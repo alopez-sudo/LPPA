@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{88712334-6066-42EB-A176-7F991224E13F}</ProjectGuid>
+    <ProjectGuid>{B8397420-30FF-4B69-BCBA-9830EEE41D66}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BuyMotors.BL</RootNamespace>
-    <AssemblyName>BuyMotors.BL</AssemblyName>
+    <RootNamespace>BuyMotors.Log</RootNamespace>
+    <AssemblyName>BuyMotors.Log</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,22 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BuyMotors.BE\BuyMotors.BE.csproj">
-      <Project>{a6d1718e-8e96-482e-99e2-756d6e40af29}</Project>
-      <Name>BuyMotors.BE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BuyMotors.DAL\BuyMotors.DAL.csproj">
-      <Project>{6fa533fd-2593-4420-9be6-0d2509d4fec4}</Project>
-      <Name>BuyMotors.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BuyMotors.Log\BuyMotors.Log.csproj">
-      <Project>{b8397420-30ff-4b69-bcba-9830eee41d66}</Project>
-      <Name>BuyMotors.Log</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

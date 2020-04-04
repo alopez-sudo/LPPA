@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,13 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BuyMotors.BE\BuyMotors.BE.csproj">
       <Project>{a6d1718e-8e96-482e-99e2-756d6e40af29}</Project>
       <Name>BuyMotors.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuyMotors.Log\BuyMotors.Log.csproj">
+      <Project>{b8397420-30ff-4b69-bcba-9830eee41d66}</Project>
+      <Name>BuyMotors.Log</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

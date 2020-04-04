@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyMotors.DAL", "BuyMotors.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyMotors.BE", "BuyMotors.BE\BuyMotors.BE.csproj", "{A6D1718E-8E96-482E-99E2-756D6E40AF29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyMotors.Log", "BuyMotors.Log\BuyMotors.Log.csproj", "{B8397420-30FF-4B69-BCBA-9830EEE41D66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A6D1718E-8E96-482E-99E2-756D6E40AF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6D1718E-8E96-482E-99E2-756D6E40AF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6D1718E-8E96-482E-99E2-756D6E40AF29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8397420-30FF-4B69-BCBA-9830EEE41D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8397420-30FF-4B69-BCBA-9830EEE41D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8397420-30FF-4B69-BCBA-9830EEE41D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8397420-30FF-4B69-BCBA-9830EEE41D66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
