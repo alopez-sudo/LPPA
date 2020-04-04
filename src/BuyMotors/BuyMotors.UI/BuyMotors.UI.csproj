@@ -402,6 +402,10 @@
       <Project>{88712334-6066-42eb-a176-7f991224e13f}</Project>
       <Name>BuyMotors.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BuyMotors.Log\BuyMotors.Log.csproj">
+      <Project>{b8397420-30ff-4b69-bcba-9830eee41d66}</Project>
+      <Name>BuyMotors.Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
