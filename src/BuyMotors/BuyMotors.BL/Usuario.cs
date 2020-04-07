@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BuyMotors.BL
 {
-    public class Class1
+    public class Usuario
     {
+        public static bool Login(string email, string contrasenia)
+        {
+            return false;
+        }
     }
 }

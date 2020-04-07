@@ -27,6 +27,11 @@ namespace BuyMotors.Account
         {
             if (IsValid)
             {
+                if (BL.Usuario.Login(Email.Text, Password.Text))
+                {
+
+                }
+
                 // Validar la contraseña del usuario
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
