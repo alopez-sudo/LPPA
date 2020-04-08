@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Security.Cryptography;
-using BuyMotors.Log;
 
-namespace BL
+namespace BuyMotors.BL
 {
     public static class Encriptador
     {
@@ -19,7 +18,7 @@ namespace BL
             }
             catch (Exception ex)
             {
-                Log.Grabar(ex);
+                Log.Log.Grabar(ex);
                 return "";
             }
         }
