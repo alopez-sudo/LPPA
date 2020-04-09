@@ -9,7 +9,19 @@
 <body>
     <form id="form1" runat="server">
         <div>
-			<asp:GridView ID="gvVehiculos" runat="server"></asp:GridView>
+			<asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive table-striped table-hover">
+				<Columns>
+					<asp:BoundField DataField="Patente" HeaderText="Patente" />
+					<asp:BoundField DataField="Tipo.Nombre" HeaderText="Tipo" />
+					<asp:BoundField DataField="Categoria.Nombre" HeaderText="Categoría" />
+					<asp:BoundField DataField="Modelo.Marca.Nombre" HeaderText="Marca" />
+					<asp:BoundField DataField="Modelo.Nombre" HeaderText="Modelo" />
+					<asp:BoundField DataField="Color.Nombre" HeaderText="Color" />
+					<asp:BoundField DataField="AnioFabricacion" HeaderText="Año Fabricación" />
+					<asp:BoundField DataField="Precio" HeaderText="Precio" />
+				</Columns>
+				<HeaderStyle CssClass="thead-dark" />
+			</asp:GridView>
         </div>
     </form>
 </body>

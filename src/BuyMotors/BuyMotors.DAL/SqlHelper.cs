@@ -34,7 +34,7 @@ namespace BuyMotors.DAL
                     CommandText = query,
                     CommandType = CommandType.Text,
                 };
-                if(parameters.Count() > 0)
+                if(parameters != null && parameters.Count() > 0)
                 {
                     cmd.Parameters.AddRange(parameters);
                 }
