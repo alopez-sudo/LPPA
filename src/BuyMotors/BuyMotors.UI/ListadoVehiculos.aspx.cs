@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BuyMotors.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,13 @@ namespace BuyMotors.UI
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			CargarGvVehiculo();
+		}
 
+		private void CargarGvVehiculo()
+		{
+			gvVehiculos.DataSource = VehiculoManager.ObtenerVehiculos();
+			gvVehiculos.DataBind();
 		}
 	}
 }

@@ -47,6 +47,7 @@
     <Compile Include="RolDAL.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="UsuarioDAL.cs" />
+    <Compile Include="VehiculoMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BuyMotors.BE\BuyMotors.BE.csproj">
