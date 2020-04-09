@@ -10,14 +10,27 @@ namespace BuyMotors.DAL
 {
 	public class VehiculoMapper
 	{
-		public static IEnumerable<Vehiculo> ObtenerVehiculos()
+		public static IEnumerable<Vehiculo> ObtenerVehiculos(FiltroVehiculo filtro)
 		{
+			string filtroSql = "";
+
+			if(filtro != null)
+			{
+				if(!string.IsNullOrEmpty(filtro.Patente))
+					filtroSql += " AND v.Patente LIKE '%" + filtro.Patente + "%'";
+				if(filtro.PrecioDesde.HasValue)
+					filtroSql += " AND v.Precio >= " + filtro.PrecioDesde.Value;
+				if(filtro.PrecioHasta.HasValue)
+					filtroSql += " AND v.Precio <= " + filtro.PrecioHasta.Value;
+			}
+
 			string query = "SELECT v.Id,v.Patente,v.ColorId,c.Nombre AS Color,v.ModeloId,m.Nombre AS Modelo,m.MarcaId,ma.Nombre AS Marca,v.Precio,v.AnioFabricacion,v.TipoVehiculoId,t.Nombre AS Tipo,v.CategoriaVehiculoId,ca.Nombre AS Categoria" +
 							" FROM Vehiculo v INNER JOIN Color c ON c.Id=v.ColorId" +
 							" INNER JOIN CategoriaVehiculo ca ON ca.Id=v.CategoriaVehiculoId" +
 							" INNER JOIN TipoVehiculo t ON t.Id=v.TipoVehiculoId" +
 							" INNER JOIN Modelo m ON m.Id=v.ModeloId" +
 							" INNER JOIN Marca ma ON ma.Id=m.MarcaId" +
+							" WHERE 1=1" + filtroSql +
 							" ORDER BY v.Id";
 			DataTable tabla = SqlHelper.Obtener(query, null, SqlHelper.Bd.Principal);
 

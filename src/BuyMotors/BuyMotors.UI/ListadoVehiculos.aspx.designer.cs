@@ -15,13 +15,49 @@ namespace BuyMotors.UI
 	{
 
 		/// <summary>
-		/// form1 control.
+		/// TxtPatente control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+		protected global::System.Web.UI.WebControls.TextBox TxtPatente;
+
+		/// <summary>
+		/// TxtPrecioDesde control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox TxtPrecioDesde;
+
+		/// <summary>
+		/// TxtPrecioHasta control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox TxtPrecioHasta;
+
+		/// <summary>
+		/// BtnBuscar control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button BtnBuscar;
+
+		/// <summary>
+		/// BtnLimpiar control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button BtnLimpiar;
 
 		/// <summary>
 		/// gvVehiculos control.
