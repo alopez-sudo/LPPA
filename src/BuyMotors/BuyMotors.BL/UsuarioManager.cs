@@ -14,7 +14,7 @@ namespace BuyMotors.BL
         {
             try
             {
-                Usuario usuario = UsuarioDAL.Obtener(email, Encriptador.Encriptar(contrasenia));
+                Usuario usuario = UsuarioMapper.Obtener(email, Encriptador.Encriptar(contrasenia));
                 if (usuario != null && TienePermiso(usuario, Permisos.LOGIN))
                 {
                     return usuario;
@@ -30,7 +30,24 @@ namespace BuyMotors.BL
 
         public static bool TienePermiso(Usuario usuario, string permiso)
         {
-            return usuario.Rol.Permisos.Any(p => p.Nombre == permiso);
+            return ChequearPermiso(usuario.Permisos, permiso);
+        }
+
+        private static bool ChequearPermiso(List<Permiso> permisos, string permisoAChequear)
+        {
+            foreach (Permiso permiso in permisos)
+            {
+                if (permiso.Nombre == permisoAChequear)
+                {
+                    return true;
+                }
+                else
+                {
+                    return ChequearPermiso(permiso.DevolverPerfil(), permisoAChequear);
+                }
+            }
+
+            return false;
         }
     }
 }

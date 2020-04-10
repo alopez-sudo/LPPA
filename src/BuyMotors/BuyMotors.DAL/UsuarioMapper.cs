@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 
 namespace BuyMotors.DAL
 {
-    public class UsuarioDAL
+    public class UsuarioMapper
     {
         public static Usuario Obtener(string email, string contrasenia)
         {
-            string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono, RolId FROM Usuario " +
+            string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono FROM Usuario " +
                 "WHERE Email = @email AND Password = @contrasenia";
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -27,7 +27,7 @@ namespace BuyMotors.DAL
                     Apellido = table.Rows[0]["Apellido"].ToString(),
                     Telefono = table.Rows[0]["Telefono"].ToString(),
                     Email = email,
-                    Rol = RolDAL.Obtener(int.Parse(table.Rows[0]["RolId"].ToString()))
+                    Permisos = PermisoMapper.ObtenerPorUsuario(id)
                 };
             }
 

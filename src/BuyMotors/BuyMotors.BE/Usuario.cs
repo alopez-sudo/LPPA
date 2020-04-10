@@ -1,4 +1,6 @@
-﻿namespace BuyMotors.BE
+﻿using System.Collections.Generic;
+
+namespace BuyMotors.BE
 {
     public class Usuario
     {
@@ -8,6 +10,6 @@
         public string Telefono { get; set; }
         public string Email { get; set; }
         public string Contrasenia { get; set; }
-        public Rol Rol { get; set; }
+        public List<Permiso> Permisos { get; set; }
     }
 }

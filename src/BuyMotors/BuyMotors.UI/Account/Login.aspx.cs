@@ -10,14 +10,16 @@ namespace BuyMotors.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
-            // Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
+            if (Session["UsuarioLogueado"] != null)
             {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                SalirDeLaPagina();
+
+                // Esto va a servir para las demás páginas que requieren autenticación
+                //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+                //if (!String.IsNullOrEmpty(returnUrl))
+                //{
+                //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                //}
             }
         }
 
@@ -30,16 +32,7 @@ namespace BuyMotors.Account
                 {
                     Session["UsuarioLogueado"] = usuarioLogueado;
 
-                    string urlRegreso = Request.QueryString["UrlRegreso"].ToString();
-                    if(!string.IsNullOrEmpty(urlRegreso))
-                    {
-                        Response.Redirect(urlRegreso);
-                    }
-                    else
-                    {
-                        // No hay Url especificada, se lo manda a la página principal
-                        Response.Redirect("Default.aspx");
-                    }
+                    SalirDeLaPagina();
                 }
                 else
                 {
@@ -47,6 +40,20 @@ namespace BuyMotors.Account
                     FailureText.Text = "Intento de inicio de sesión no válido";
                     ErrorMessage.Visible = true;
                 }
+            }
+        }
+
+        private void SalirDeLaPagina()
+        {
+            string urlRegreso = Request.QueryString["ReturnUrl"];
+            if (!string.IsNullOrEmpty(urlRegreso))
+            {
+                Response.Redirect(urlRegreso);
+            }
+            else
+            {
+                // No hay Url especificada, se lo manda a la página principal
+                Response.Redirect("../Default.aspx");
             }
         }
     }
