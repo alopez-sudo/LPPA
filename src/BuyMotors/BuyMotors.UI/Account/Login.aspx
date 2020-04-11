@@ -31,14 +31,14 @@
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
                                 <asp:CheckBox runat="server" ID="RememberMe" />
                                 <asp:Label runat="server" AssociatedControlID="RememberMe">¿Recordar cuenta?</asp:Label>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" />
@@ -48,17 +48,6 @@
                 <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Registrarse como usuario nuevo</asp:HyperLink>
                 </p>
-                <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
-                </p>
-            </section>
-        </div>
-
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
         </div>
     </div>
