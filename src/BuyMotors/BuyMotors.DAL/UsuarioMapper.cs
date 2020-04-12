@@ -1,4 +1,5 @@
 ﻿using BuyMotors.BE;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -32,6 +33,85 @@ namespace BuyMotors.DAL
             }
 
             return null;
+        }
+
+        public static bool Existe(string email)
+        {
+            string query = "SELECT COUNT(*) FROM Usuario WHERE Email = @email";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@email", email)
+            };
+
+            try
+            {
+                int conteo = SqlHelper.ObtenerValor<int>(query, parameters);
+                return conteo > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool Guardar(Usuario usuario)
+        {
+            if (usuario.Id > 0)
+            {
+                return Actualizar(usuario);
+            }
+            else
+            {
+                return Insertar(usuario);
+            }
+        }
+
+        private static bool Insertar(Usuario usuario)
+        {
+            string query = "INSERT INTO Usuario (Nombre, Apellido, Telefono, Email, Password) OUTPUT INSERTED.Id " +
+                "VALUES (@nombre, @apellido, @telefono, @email, @password)";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@nombre", usuario.Nombre),
+                new SqlParameter("@apellido", usuario.Apellido),
+                new SqlParameter("@telefono", usuario.Telefono),
+                new SqlParameter("@email", usuario.Email),
+                new SqlParameter("@password", usuario.Contrasenia)
+            };
+
+            usuario.Id = SqlHelper.Insertar(query, parameters);
+            if (usuario.Id == 0)
+            {
+                return false;
+            }
+
+            // Ahora inserto los permisos
+            foreach (Permiso permiso in usuario.Permisos)
+            {
+                query = "INSERT INTO UsuarioPermiso (UsuarioId, PermisoId) VALUES (@usuarioId, @permisoId)";
+                SqlParameter[] parametersPermisos = new SqlParameter[]
+                {
+                    new SqlParameter("@usuarioId", usuario.Id),
+                    new SqlParameter("@permisoId", permiso.Id)
+                };
+
+                try
+                {
+                    SqlHelper.Ejecutar(query, parametersPermisos);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool Actualizar(Usuario usuario)
+        {
+            // TODO: Esto se hará cuando haga falta
+            return false;
         }
     }
 }

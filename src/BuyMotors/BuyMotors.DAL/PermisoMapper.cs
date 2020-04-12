@@ -30,6 +30,24 @@ namespace BuyMotors.DAL
             return permisos;
         }
 
+        public static Permiso ObtenerPorNombre(string nombre)
+        {
+            string query = "SELECT Id FROM Permiso WHERE Nombre = @nombre";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@nombre", nombre)
+            };
+
+            DataTable table = SqlHelper.Obtener(query, parameters);
+            Permiso permiso = null;
+            if (table != null && table.Rows.Count > 0)
+            {
+                permiso = ObtenerPermiso(int.Parse(table.Rows[0]["id"].ToString()), 1);
+            }
+
+            return permiso;
+        }
+
         private static Permiso ObtenerPermiso(int permisoId, int profundidad)
         {
             Permiso permiso;

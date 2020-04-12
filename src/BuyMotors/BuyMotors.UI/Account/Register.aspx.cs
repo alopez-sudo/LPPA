@@ -1,35 +1,42 @@
 ﻿using System;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using BuyMotors.Models;
+using BuyMotors.BE;
+using BuyMotors.BL;
 
 namespace BuyMotors.Account
 {
     public partial class Register : Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Un usuario logueado no debería estar en esta página
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Response.Redirect("../Default.aspx");
+            }
+        }
+
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
+            Usuario usuario = new Usuario
             {
-                // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>.");
+                Apellido = LastName.Text,
+                Contrasenia = Password.Text,
+                Email = Email.Text,
+                Nombre = FirstName.Text,
+                Telefono = PhoneNumber.Text
+            };
 
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            }
-            else 
+            bool guardadoOk = UsuarioManager.Guardar(usuario, out string mensaje);
+            if (guardadoOk)
             {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                // Dejo al usuario logueado
+                Session["UsuarioLogueado"] = usuario;
+                Response.Redirect("../Default.aspx");
+            }
+            else
+            {
+                ErrorMessage.Text = mensaje;
             }
         }
     }

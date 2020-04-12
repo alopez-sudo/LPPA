@@ -28,6 +28,31 @@ namespace BuyMotors.BL
             return null;
         }
 
+        public static bool Guardar(Usuario usuario, out string mensaje)
+        {
+            try
+            {
+                if (UsuarioMapper.Existe(usuario.Email))
+                {
+                    mensaje = "Ya existe un usuario registrado con ese correo electrónico";
+                    return false;
+                }
+
+                usuario.Contrasenia = Encriptador.Encriptar(usuario.Contrasenia);
+                Permiso perfilUsuarioBasico = PermisoManager.Obtener(Familias.USUARIO_BASICO);
+                usuario.Permisos.Add(perfilUsuarioBasico);
+                bool guardadoOk = UsuarioMapper.Guardar(usuario);
+                mensaje = guardadoOk ? "Usuario guardado correctamente" : "Ocurrió un error al guardar el usuario";
+
+                return guardadoOk;
+            }
+            catch
+            {
+                mensaje = "Ocurrió un error al guardar el usuario";
+                return false;
+            }
+        }
+
         public static bool TienePermiso(Usuario usuario, string permiso)
         {
             return ChequearPermiso(usuario.Permisos, permiso);

@@ -10,6 +10,6 @@ namespace BuyMotors.BE
         public string Telefono { get; set; }
         public string Email { get; set; }
         public string Contrasenia { get; set; }
-        public List<Permiso> Permisos { get; set; }
+        public List<Permiso> Permisos { get; set; } = new List<Permiso>();
     }
 }

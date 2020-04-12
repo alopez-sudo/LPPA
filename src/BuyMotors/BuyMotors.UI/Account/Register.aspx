@@ -37,6 +37,30 @@
             </div>
         </div>
         <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label">Nombre</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="FirstName" TextMode="SingleLine" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="FirstName"
+                    CssClass="text-danger" ErrorMessage="El campo Nombre es obligatorio." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="LastName" CssClass="col-md-2 control-label">Apellido</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="LastName" TextMode="SingleLine" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="LastName"
+                    CssClass="text-danger" ErrorMessage="El campo Apellido es obligatorio." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="PhoneNumber" CssClass="col-md-2 control-label">Teléfono</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="PhoneNumber" TextMode="Phone" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="PhoneNumber"
+                    CssClass="text-danger" ErrorMessage="El campo Teléfono es obligatorio." />
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Registrarse" CssClass="btn btn-default" />
             </div>

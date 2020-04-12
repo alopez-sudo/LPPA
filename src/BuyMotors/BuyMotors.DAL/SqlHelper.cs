@@ -8,21 +8,11 @@ namespace BuyMotors.DAL
 {
     class SqlHelper
     {
-        public enum Bd
-        {
-            Principal,
-            Bitacora,
-            Master
-        }
+        private const string CONN_STRING_KEY = "Principal";
 
         public static DataTable Obtener(string query, SqlParameter[] parameters)
         {
-            return Obtener(query, parameters, Bd.Principal);
-        }
-
-        public static DataTable Obtener(string query, SqlParameter[] parameters, Bd bd)
-        {
-            string connString = LeerConnString(bd);
+            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
             try
             {
                 SqlCommand cmd = new SqlCommand
@@ -53,19 +43,13 @@ namespace BuyMotors.DAL
             catch (Exception ex)
             {
                 Log.Log.Grabar(ex);
-                if(bd != Bd.Bitacora) throw ex;
                 return null;
             }
         }
 
         public static T ObtenerValor<T>(string query, SqlParameter[] parameters)
         {
-            return ObtenerValor<T>(query, parameters, Bd.Principal);
-        }
-
-        public static T ObtenerValor<T>(string query, SqlParameter[] parameters, Bd bd)
-        {
-            string connString = LeerConnString(bd);
+            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -83,19 +67,13 @@ namespace BuyMotors.DAL
             catch (Exception ex)
             {
                 Log.Log.Grabar(ex);
-                if (bd != Bd.Bitacora) throw ex;
-                return default;
+                throw ex;
             }
         }
 
         public static void Ejecutar(string query, SqlParameter[] parameters)
         {
-            Ejecutar(query, parameters, Bd.Principal);
-        }
-
-        public static void Ejecutar(string query, SqlParameter[] parameters, Bd bd)
-        {
-            string connString = LeerConnString(bd);
+            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -111,18 +89,13 @@ namespace BuyMotors.DAL
             catch (Exception ex)
             {
                 Log.Log.Grabar(ex);
-                if (bd != Bd.Bitacora) throw ex;
+                throw ex;
             }
         }
 
         public static int Insertar(string query, SqlParameter[] parameters)
         {
-            return Insertar(query, parameters, Bd.Principal);
-        }
-
-        public static int Insertar(string query, SqlParameter[] parameters, Bd bd)
-        {
-            string connString = LeerConnString(bd);
+            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -139,28 +112,8 @@ namespace BuyMotors.DAL
             catch (Exception ex)
             {
                 Log.Log.Grabar(ex);
-                if (bd != Bd.Bitacora) throw ex;
                 return 0;
             }
-        }
-
-        private static string LeerConnString(Bd bd)
-        {
-            string key = "";
-            if (bd == Bd.Principal)
-            {
-                key = "Principal";
-            }
-            else if (bd == Bd.Bitacora)
-            {
-                key = "Bitacora";
-            }
-            else if (bd == Bd.Master)
-            {
-                key = "Master";
-            }
-
-            return ConfigurationManager.ConnectionStrings[key].ConnectionString;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace BuyMotors.DAL
 							" INNER JOIN Marca ma ON ma.Id=m.MarcaId" +
 							" WHERE 1=1" + filtroSql +
 							" ORDER BY v.Id";
-			DataTable tabla = SqlHelper.Obtener(query, null, SqlHelper.Bd.Principal);
+			DataTable tabla = SqlHelper.Obtener(query, null);
 
 			if(tabla == null || tabla.Rows.Count == 0)
 				return null;
