@@ -10,5 +10,6 @@
         public Modelo Modelo { get; set; }
         public int Precio { get; set; }
         public int AnioFabricacion { get; set; }
-    }
+		public string ImagenNombre { get; set; }
+	}
 }

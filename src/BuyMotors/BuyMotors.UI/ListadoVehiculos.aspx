@@ -33,6 +33,11 @@
 				<asp:BoundField DataField="Color.Nombre" HeaderText="Color" />
 				<asp:BoundField DataField="AnioFabricacion" HeaderText="Año Fabricación" />
 				<asp:BoundField DataField="Precio" HeaderText="Precio" />
+				<asp:TemplateField HeaderText="Acción">
+					<ItemTemplate>
+						<asp:HyperLink ID="VehiculoDetalleHyperlink" runat="server" NavigateUrl='<%# Eval("Id", @"~\VehiculoDetalle.aspx?CodigoVehiculo={0}") %>' Text="Ver Detalle" CssClass="btn btn-primary"></asp:HyperLink>
+					</ItemTemplate>
+				</asp:TemplateField>
 			</Columns>
 			<HeaderStyle CssClass="thead-dark" />
 		</asp:GridView>

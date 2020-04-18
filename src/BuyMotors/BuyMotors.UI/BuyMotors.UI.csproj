@@ -187,6 +187,19 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Images\207.jpg" />
+    <Content Include="Images\208.jpg" />
+    <Content Include="Images\amarok.png" />
+    <Content Include="Images\bora.jpg" />
+    <Content Include="Images\captur.jpg" />
+    <Content Include="Images\corsa.jpg" />
+    <Content Include="Images\fiesta.jpg" />
+    <Content Include="Images\gol.jpg" />
+    <Content Include="Images\ka.jpg" />
+    <Content Include="Images\megane.png" />
+    <Content Include="Images\ranger.jpg" />
+    <Content Include="Images\spin.jpg" />
+    <Content Include="Images\vento.jpg" />
     <Content Include="ListadoVehiculos.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -217,6 +230,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="VehiculoDetalle.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -387,6 +401,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="VehiculoDetalle.aspx.cs">
+      <DependentUpon>VehiculoDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VehiculoDetalle.aspx.designer.cs">
+      <DependentUpon>VehiculoDetalle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

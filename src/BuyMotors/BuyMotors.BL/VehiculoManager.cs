@@ -14,5 +14,9 @@ namespace BuyMotors.BL
 		{
 			return VehiculoMapper.ObtenerVehiculos(filtro);
 		}
+		public static Vehiculo ObtenerVehiculo(int Id)
+		{
+			return VehiculoMapper.ObtenerVehiculo(Id);
+		}
 	}
 }
