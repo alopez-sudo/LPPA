@@ -13,7 +13,8 @@ namespace BuyMotors.UI
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			CargarGvVehiculo(null);
+			if(!IsPostBack)
+				CargarGvVehiculo(null);
 		}
 
 		private void CargarGvVehiculo(FiltroVehiculo filtro)
@@ -24,20 +25,27 @@ namespace BuyMotors.UI
 
 		protected void BtnBuscar_Click(object sender, EventArgs e)
 		{
+			int unNumero;
 			FiltroVehiculo filtro = new FiltroVehiculo();
 			if(!string.IsNullOrEmpty(TxtPatente.Text))
+			{
 				filtro.Patente = TxtPatente.Text;
-			if(!string.IsNullOrEmpty(TxtPrecioDesde.Text))
+			}
+			if(!string.IsNullOrEmpty(TxtPrecioDesde.Text) && int.TryParse(TxtPrecioDesde.Text, out unNumero))
 				filtro.PrecioDesde = int.Parse(TxtPrecioDesde.Text);
-			if(!string.IsNullOrEmpty(TxtPrecioHasta.Text))
+			else
+				TxtPrecioDesde.Text = string.Empty;
+			if(!string.IsNullOrEmpty(TxtPrecioHasta.Text) && int.TryParse(TxtPrecioHasta.Text, out unNumero))
 				filtro.PrecioHasta = int.Parse(TxtPrecioHasta.Text);
+			else
+				TxtPrecioHasta.Text = string.Empty;
 			CargarGvVehiculo(filtro);
 		}
 		protected void BtnLimpiar_Click(object sender, EventArgs e)
 		{
-			TxtPatente.Text = "";
-			TxtPrecioDesde.Text = "";
-			TxtPrecioHasta.Text = "";
+			TxtPatente.Text = string.Empty;
+			TxtPrecioDesde.Text = string.Empty;
+			TxtPrecioHasta.Text = string.Empty;
 			CargarGvVehiculo(null);
 		}
 	}

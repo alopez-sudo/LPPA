@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,26 @@ namespace BuyMotors.DAL
 		{
 			string filtroSql = "";
 
+			List<SqlParameter> parameters = null;
+
 			if(filtro != null)
 			{
+				parameters = new List<SqlParameter>();
 				if(!string.IsNullOrEmpty(filtro.Patente))
-					filtroSql += " AND v.Patente LIKE '%" + filtro.Patente + "%'";
+				{
+					filtroSql += " AND v.Patente LIKE @Patente";
+					parameters.Add(new SqlParameter("@Patente", string.Format("%{0}%", filtro.Patente)));
+				}
 				if(filtro.PrecioDesde.HasValue)
-					filtroSql += " AND v.Precio >= " + filtro.PrecioDesde.Value;
+				{
+					filtroSql += " AND v.Precio >= @PrecioDesde";
+					parameters.Add(new SqlParameter("@PrecioDesde", filtro.PrecioDesde.Value));
+				}
 				if(filtro.PrecioHasta.HasValue)
-					filtroSql += " AND v.Precio <= " + filtro.PrecioHasta.Value;
+				{
+					filtroSql += " AND v.Precio <= @PrecioHasta";
+					parameters.Add(new SqlParameter("@PrecioHasta", filtro.PrecioHasta.Value));
+				}
 			}
 
 			string query = "SELECT v.Id,v.Patente,v.ColorId,c.Nombre AS Color,v.ModeloId,m.Nombre AS Modelo,m.MarcaId,ma.Nombre AS Marca,v.Precio,v.AnioFabricacion,v.TipoVehiculoId,t.Nombre AS Tipo,v.CategoriaVehiculoId,ca.Nombre AS Categoria" +
@@ -32,7 +45,7 @@ namespace BuyMotors.DAL
 							" INNER JOIN Marca ma ON ma.Id=m.MarcaId" +
 							" WHERE 1=1" + filtroSql +
 							" ORDER BY v.Id";
-			DataTable tabla = SqlHelper.Obtener(query, null);
+			DataTable tabla = SqlHelper.Obtener(query, parameters == null ? null : parameters.ToArray());
 
 			if(tabla == null || tabla.Rows.Count == 0)
 				return null;
