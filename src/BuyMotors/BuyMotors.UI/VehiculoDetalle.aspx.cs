@@ -19,7 +19,7 @@ namespace BuyMotors.UI
 
 		private void LeerParametros()
 		{
-			if(!int.TryParse(Request.QueryString["CodigoVehiculo"], out Id))
+			if(string.IsNullOrEmpty(Request.QueryString["CodigoVehiculo"]) || !int.TryParse(Request.QueryString["CodigoVehiculo"], out Id))
 				Response.Redirect("ListadoVehiculos.aspx", true);
 		}
 

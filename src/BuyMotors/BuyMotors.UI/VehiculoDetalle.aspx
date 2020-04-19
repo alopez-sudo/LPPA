@@ -9,7 +9,7 @@
 	<asp:Label id="LblCategoria" runat="server" /></h3><br />
 	<h3>Precio: $<asp:Label id="LblPrecio" runat="server" /></h3><br />
 	<h3>Modelo: <asp:Label id="LblAnioFabricacion" runat="server" /></h3><br /><br />
-	<asp:Image ID="ImgFotoVehiculo" runat="server" /><br /><br />
+	<asp:Image ID="ImgFotoVehiculo" runat="server" CssClass="size-imagen-vehiculo" /><br /><br />
 	<asp:Button ID="BtnAgregarAlCarrito" runat="server" Text="Agregar al Carrito" CssClass="btn btn-primary" />
 	<asp:HyperLink ID="VolverHyperlink" runat="server" NavigateUrl='~\ListadoVehiculos.aspx' Text="Volver a Listado" CssClass="btn btn-default"></asp:HyperLink>
 </asp:Content>
