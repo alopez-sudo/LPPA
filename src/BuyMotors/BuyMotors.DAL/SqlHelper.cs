@@ -56,7 +56,10 @@ namespace BuyMotors.DAL
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddRange(parameters);
+                    if (parameters != null)
+                    {
+                        command.Parameters.AddRange(parameters);
+                    }
                     command.Connection.Open();
                     object value = command.ExecuteScalar();
                     T valor = value is DBNull || value == null ? default : (T)Convert.ChangeType(value, typeof(T));

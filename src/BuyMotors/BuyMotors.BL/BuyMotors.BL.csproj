@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Encriptador.cs" />
     <Compile Include="Familias.cs" />
+    <Compile Include="IntegridadDatos.cs" />
     <Compile Include="PermisoManager.cs" />
     <Compile Include="Permisos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

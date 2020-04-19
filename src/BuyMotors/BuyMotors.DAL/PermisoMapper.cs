@@ -10,10 +10,7 @@ namespace BuyMotors.DAL
     {
         public static List<Permiso> ObtenerPorUsuario(int usuarioId)
         {
-            string query = "SELECT p.Id " +
-                "FROM UsuarioPermiso up " +
-                "INNER JOIN Permiso p ON p.Id = up.UsuarioId " +
-                "WHERE up.UsuarioId = @usuarioId";
+            string query = "SELECT PermisoId FROM UsuarioPermiso WHERE UsuarioId = @usuarioId";
             
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -24,7 +21,7 @@ namespace BuyMotors.DAL
             List<Permiso> permisos = new List<Permiso>();
             foreach (DataRow row in table.Rows)
             {
-                Permiso permiso = ObtenerPermiso(int.Parse(row["id"].ToString()), 1);
+                Permiso permiso = ObtenerPermiso(int.Parse(row["PermisoId"].ToString()), 1);
                 permisos.Add(permiso);
             }
             return permisos;

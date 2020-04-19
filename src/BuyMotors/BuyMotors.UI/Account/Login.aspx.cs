@@ -12,7 +12,7 @@ namespace BuyMotors.Account
         {
             if (Session["UsuarioLogueado"] != null)
             {
-                SalirDeLaPagina();
+                SalirDeLaPagina(false);
 
                 // Esto va a servir para las demás páginas que requieren autenticación
                 //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
@@ -32,7 +32,12 @@ namespace BuyMotors.Account
                 {
                     Session["UsuarioLogueado"] = usuarioLogueado;
 
-                    SalirDeLaPagina();
+                    if (UsuarioManager.TienePermiso(usuarioLogueado, Permisos.CHEQUEO_DV))
+                    {
+                        Session["MostrarMensajeDV"] = !IntegridadDatos.Chequear();
+                    }
+
+                    SalirDeLaPagina(true);
                 }
                 else
                 {
@@ -43,7 +48,7 @@ namespace BuyMotors.Account
             }
         }
 
-        private void SalirDeLaPagina()
+        private void SalirDeLaPagina(bool mostrarAlerta)
         {
             string urlRegreso = Request.QueryString["ReturnUrl"];
             if (!string.IsNullOrEmpty(urlRegreso))

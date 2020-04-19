@@ -59,13 +59,20 @@
                         <li><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                     </ul>
                     <% }
-                    else
-                    {%>
+                        else
+                        {%>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Account/Manage" title="Configuración de la cuenta">Hola, <%: ((BuyMotors.BE.Usuario)Session["UsuarioLogueado"]).Nombre %>!</a></li>
                         <li><a runat="server" href="~/Account/Logout" title="Cerrar sesión">Cerrar sesión</a></li>
                     </ul>
-                    <% } %>
+                    <% if (Session["MostrarMensajeDV"] != null && (bool)Session["MostrarMensajeDV"] == true)
+                        {
+                            Session["MostrarMensajeDV"] = false;%>
+                    <script>
+                        alert('La base de datos fue modificada externamente. Por favor, restaure algún backup.');
+                    </script>
+                    <% }
+                        } %>
                 </div>
             </div>
         </div>

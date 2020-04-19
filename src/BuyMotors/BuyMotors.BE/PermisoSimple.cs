@@ -13,10 +13,7 @@ namespace BuyMotors.BE
 
         public override List<Permiso> DevolverPerfil()
         {
-            return new List<Permiso>
-            {
-                this
-            };
+            return new List<Permiso>();
         }
     }
 }

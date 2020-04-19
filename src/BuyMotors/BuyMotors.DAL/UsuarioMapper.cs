@@ -20,7 +20,7 @@ namespace BuyMotors.DAL
             DataTable table = SqlHelper.Obtener(query, parameters);
             if (table != null && table.Rows.Count > 0)
             {
-                int id = int.Parse(table.Rows[0]["id"].ToString());
+                int id = int.Parse(table.Rows[0]["Id"].ToString());
                 return new Usuario
                 {
                     Id = id,
@@ -68,8 +68,8 @@ namespace BuyMotors.DAL
 
         private static bool Insertar(Usuario usuario)
         {
-            string query = "INSERT INTO Usuario (Nombre, Apellido, Telefono, Email, Password) OUTPUT INSERTED.Id " +
-                "VALUES (@nombre, @apellido, @telefono, @email, @password)";
+            string query = "INSERT INTO Usuario (Nombre, Apellido, Telefono, Email, Password, DVH) OUTPUT INSERTED.Id " +
+                "VALUES (@nombre, @apellido, @telefono, @email, @password, 0)";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@nombre", usuario.Nombre),
@@ -84,6 +84,8 @@ namespace BuyMotors.DAL
             {
                 return false;
             }
+
+            DigitoVerificador.ActualizarDV(usuario);
 
             // Ahora inserto los permisos
             foreach (Permiso permiso in usuario.Permisos)
