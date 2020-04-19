@@ -1,0 +1,8 @@
+Email: admin@mail.com
+Password: admin
+
+Email: usuariobasico@mail.com
+Password: usuariobasico
+
+Email: webmaster@mail.com
+Password: webmaster
