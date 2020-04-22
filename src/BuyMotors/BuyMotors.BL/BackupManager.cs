@@ -13,8 +13,10 @@ namespace BuyMotors.BL
     {
         private const string DATE_FORMAT_FOR_FILE = "yyyy_MM_dd_HH_mm_ss";
 
-        public static bool HacerBackup()
+        public static bool HacerBackup(out string mensajeError)
         {
+            mensajeError = "";
+
             // Primero debo chequear la integridad de la BD
             if (DigitoVerificador.VerificarIntegridad())
             {
@@ -31,6 +33,10 @@ namespace BuyMotors.BL
                 {
                     Log.Log.Grabar(ex);
                 }
+            }
+            else
+            {
+                mensajeError = "No se puede hacer un backup porque la base de datos no está íntegra";
             }
 
             return false;
@@ -64,6 +70,26 @@ namespace BuyMotors.BL
                 Log.Log.Grabar(ex);
                 return new List<Backup>();
             }
+        }
+
+        public static bool RestaurarBackup(string nombreArchivo)
+        {
+            try
+            {
+                string rutaBackups = ConfigurationManager.AppSettings.Get("ubicacionBackups");
+                string rutaCompletaBackup = rutaBackups + nombreArchivo + ".bak";
+                if (File.Exists(rutaCompletaBackup))
+                {
+                    BackupMapper.RestaurarBackup(rutaCompletaBackup);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Log.Grabar(ex);
+            }
+
+            return false;
         }
     }
 }

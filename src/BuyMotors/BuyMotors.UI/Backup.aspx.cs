@@ -2,6 +2,7 @@
 using BuyMotors.BL;
 using System;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace BuyMotors.UI
 {
@@ -20,13 +21,29 @@ namespace BuyMotors.UI
 
         protected void BtnBackup_Click(object sender, EventArgs e)
         {
-            if (BackupManager.HacerBackup())
+            if (BackupManager.HacerBackup(out string mensajeError))
             {
                 Response.Redirect("Backup.aspx");
             }
             else
             {
-                FailureText.Text = "Ocurrió un error al realizar el backup";
+                FailureText.Text = string.IsNullOrEmpty(mensajeError) ? "Ocurrió un error al realizar el backup" : mensajeError;
+                ErrorMessage.Visible = true;
+            }
+        }
+
+        protected void BtnRestaurar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string nombreArchivo = btn.CommandArgument;
+            if (BackupManager.RestaurarBackup(nombreArchivo))
+            {
+                SuccessText.Text = "Backup restaurado satisfactoriamente";
+                SuccessMessage.Visible = true;
+            }
+            else
+            {
+                FailureText.Text = "Ocurrió un error al restaurar el backup";
                 ErrorMessage.Visible = true;
             }
         }

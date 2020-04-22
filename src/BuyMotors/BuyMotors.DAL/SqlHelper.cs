@@ -9,6 +9,7 @@ namespace BuyMotors.DAL
     class SqlHelper
     {
         private const string CONN_STRING_KEY = "Principal";
+        private const string CONN_STRING_MASTER_KEY = "Master";
 
         public static DataTable Obtener(string query, SqlParameter[] parameters)
         {
@@ -74,9 +75,19 @@ namespace BuyMotors.DAL
             }
         }
 
+        public static void EjecutarEnMaster(string query, SqlParameter[] parameters)
+        {
+            Ejecutar(query, parameters, CONN_STRING_MASTER_KEY);
+        }
+
         public static void Ejecutar(string query, SqlParameter[] parameters)
         {
-            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
+            Ejecutar(query, parameters, CONN_STRING_KEY);
+        }
+
+        private static void Ejecutar(string query, SqlParameter[] parameters, string connStringKey)
+        {
+            string connString = ConfigurationManager.ConnectionStrings[connStringKey].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
