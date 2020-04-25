@@ -3,14 +3,15 @@ using System.Web;
 using System.Web.UI;
 using BuyMotors.BL;
 using BuyMotors.BE;
+using BuyMotors.UI;
 
 namespace BuyMotors.Account
 {
-    public partial class Login : Page
+    public partial class Login : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UsuarioLogueado"] != null)
+            if (UsuarioLogueado != null)
             {
                 SalirDeLaPagina(false);
 
@@ -30,7 +31,8 @@ namespace BuyMotors.Account
                 Usuario usuarioLogueado = UsuarioManager.Login(Email.Text, Password.Text);
                 if (usuarioLogueado != null)
                 {
-                    Session["UsuarioLogueado"] = usuarioLogueado;
+                    UsuarioLogueado = usuarioLogueado;
+                    BitacoraManager.Grabar(usuarioLogueado, "Login ok");
 
                     if (UsuarioManager.TienePermiso(usuarioLogueado, Permisos.CHEQUEO_DV))
                     {

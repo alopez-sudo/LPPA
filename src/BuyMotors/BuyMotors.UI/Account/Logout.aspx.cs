@@ -1,14 +1,16 @@
-﻿using System;
+﻿using BuyMotors.BL;
+using System;
 
 namespace BuyMotors.UI.Account
 {
-    public partial class Logout : System.Web.UI.Page
+    public partial class Logout : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UsuarioLogueado"] != null)
+            if (UsuarioLogueado != null)
             {
-                Session["UsuarioLogueado"] = null;
+                BitacoraManager.Grabar(UsuarioLogueado, "Cierre de sesión");
+                UsuarioLogueado = null;
                 Response.Redirect("../Default.aspx");
             }
         }

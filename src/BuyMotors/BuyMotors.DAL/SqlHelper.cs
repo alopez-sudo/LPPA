@@ -9,6 +9,7 @@ namespace BuyMotors.DAL
     class SqlHelper
     {
         private const string CONN_STRING_KEY = "Principal";
+        private const string CONN_STRING_BITACORA_KEY = "Bitacora";
         private const string CONN_STRING_MASTER_KEY = "Master";
 
         public static DataTable Obtener(string query, SqlParameter[] parameters)
@@ -109,7 +110,17 @@ namespace BuyMotors.DAL
 
         public static int Insertar(string query, SqlParameter[] parameters)
         {
-            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
+            return Insertar(query, parameters, CONN_STRING_KEY);
+        }
+
+        public static int InsertarBitacora(string query, SqlParameter[] parameters)
+        {
+            return Insertar(query, parameters, CONN_STRING_BITACORA_KEY);
+        }
+
+        private static int Insertar(string query, SqlParameter[] parameters, string connStringKey)
+        {
+            string connString = ConfigurationManager.ConnectionStrings[connStringKey].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))

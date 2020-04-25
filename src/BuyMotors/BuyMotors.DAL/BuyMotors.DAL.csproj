@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackupMapper.cs" />
+    <Compile Include="BitacoraMapper.cs" />
     <Compile Include="DigitoVerificador.cs" />
     <Compile Include="PermisoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

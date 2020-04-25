@@ -368,6 +368,9 @@
     <Compile Include="Backup.aspx.designer.cs">
       <DependentUpon>Backup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
