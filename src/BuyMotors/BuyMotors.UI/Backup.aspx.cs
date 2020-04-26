@@ -6,12 +6,11 @@ using System.Web.UI.WebControls;
 
 namespace BuyMotors.UI
 {
-    public partial class Backup : Page
+    public partial class Backup : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario usuarioLogueado = Session["UsuarioLogueado"] == null ? null : (Usuario)Session["UsuarioLogueado"];
-            if (usuarioLogueado == null || !UsuarioManager.TienePermiso(usuarioLogueado, Permisos.BACKUPS))
+            if (UsuarioLogueado == null || !UsuarioManager.TienePermiso(UsuarioLogueado, Permisos.BACKUPS))
             {
                 Response.Redirect("Default.aspx");
             }
@@ -23,6 +22,7 @@ namespace BuyMotors.UI
         {
             if (BackupManager.HacerBackup(out string mensajeError))
             {
+                BitacoraManager.Grabar(UsuarioLogueado, "Se realizó un backup");
                 Response.Redirect("Backup.aspx");
             }
             else
@@ -38,6 +38,7 @@ namespace BuyMotors.UI
             string nombreArchivo = btn.CommandArgument;
             if (BackupManager.RestaurarBackup(nombreArchivo))
             {
+                BitacoraManager.Grabar(UsuarioLogueado, "Se restauró el backup " + nombreArchivo);
                 SuccessText.Text = "Backup restaurado satisfactoriamente";
                 SuccessMessage.Visible = true;
             }

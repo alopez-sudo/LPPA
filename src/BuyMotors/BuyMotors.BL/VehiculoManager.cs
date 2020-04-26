@@ -1,10 +1,7 @@
 ﻿using BuyMotors.BE;
+using BuyMotors.BE.Filtros;
 using BuyMotors.DAL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuyMotors.BL
 {

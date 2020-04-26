@@ -8,13 +8,23 @@ namespace BuyMotors.DAL
 {
     class SqlHelper
     {
-        private const string CONN_STRING_KEY = "Principal";
+        private const string CONN_STRING_PRINCIPAL_KEY = "Principal";
         private const string CONN_STRING_BITACORA_KEY = "Bitacora";
         private const string CONN_STRING_MASTER_KEY = "Master";
 
         public static DataTable Obtener(string query, SqlParameter[] parameters)
         {
-            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
+            return Obtener(query, parameters, CONN_STRING_PRINCIPAL_KEY);
+        }
+
+        public static DataTable ObtenerBitacora(string query, SqlParameter[] parameters)
+        {
+            return Obtener(query, parameters, CONN_STRING_BITACORA_KEY);
+        }
+
+        private static DataTable Obtener(string query, SqlParameter[] parameters, string connStringKey)
+        {
+            string connString = ConfigurationManager.ConnectionStrings[connStringKey].ConnectionString;
             try
             {
                 SqlCommand cmd = new SqlCommand
@@ -51,7 +61,7 @@ namespace BuyMotors.DAL
 
         public static T ObtenerValor<T>(string query, SqlParameter[] parameters)
         {
-            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_KEY].ConnectionString;
+            string connString = ConfigurationManager.ConnectionStrings[CONN_STRING_PRINCIPAL_KEY].ConnectionString;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -83,7 +93,7 @@ namespace BuyMotors.DAL
 
         public static void Ejecutar(string query, SqlParameter[] parameters)
         {
-            Ejecutar(query, parameters, CONN_STRING_KEY);
+            Ejecutar(query, parameters, CONN_STRING_PRINCIPAL_KEY);
         }
 
         private static void Ejecutar(string query, SqlParameter[] parameters, string connStringKey)
@@ -110,7 +120,7 @@ namespace BuyMotors.DAL
 
         public static int Insertar(string query, SqlParameter[] parameters)
         {
-            return Insertar(query, parameters, CONN_STRING_KEY);
+            return Insertar(query, parameters, CONN_STRING_PRINCIPAL_KEY);
         }
 
         public static int InsertarBitacora(string query, SqlParameter[] parameters)

@@ -1,15 +1,10 @@
-﻿using BuyMotors.BE;
+﻿using BuyMotors.BE.Filtros;
 using BuyMotors.BL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace BuyMotors.UI
 {
-	public partial class ListadoVehiculos : System.Web.UI.Page
+	public partial class ListadoVehiculos : BasePage
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{

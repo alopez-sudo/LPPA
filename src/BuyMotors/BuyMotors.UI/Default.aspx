@@ -7,6 +7,12 @@
         <div class="col-md-4">
             <p><a href="ListadoVehiculos" class="btn btn-primary btn-lg">Vehiculos</a></p>
         </div>
+        <% if (mostrarBotonBitacora)
+            {%>
+        <div class="col-md-4">
+            <p><a href="Bitacora" class="btn btn-primary btn-lg">Bitácora</a></p>
+        </div>
+        <% } %>
         <% if (mostrarBotonBackup)
             {%>
         <div class="col-md-4">

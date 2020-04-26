@@ -1,6 +1,8 @@
 ﻿using BuyMotors.BE;
+using BuyMotors.BE.Filtros;
 using BuyMotors.DAL;
 using System;
+using System.Collections.Generic;
 
 namespace BuyMotors.BL
 {
@@ -15,6 +17,11 @@ namespace BuyMotors.BL
                 Detalle = mensaje
             };
             BitacoraMapper.Guardar(bitacora);
+        }
+
+        public static List<Bitacora> ObtenerBitacoras(FiltroBitacora filtro)
+        {
+            return BitacoraMapper.Obtener(filtro);
         }
     }
 }

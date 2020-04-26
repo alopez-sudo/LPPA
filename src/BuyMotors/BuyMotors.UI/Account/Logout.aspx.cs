@@ -11,8 +11,9 @@ namespace BuyMotors.UI.Account
             {
                 BitacoraManager.Grabar(UsuarioLogueado, "Cierre de sesión");
                 UsuarioLogueado = null;
-                Response.Redirect("../Default.aspx");
             }
+
+            Response.Redirect("../Default.aspx");
         }
     }
 }
