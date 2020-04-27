@@ -23,9 +23,7 @@ namespace BuyMotors.UI
 			int unNumero;
 			FiltroVehiculo filtro = new FiltroVehiculo();
 			if(!string.IsNullOrEmpty(TxtPatente.Text))
-			{
 				filtro.Patente = TxtPatente.Text;
-			}
 			if(!string.IsNullOrEmpty(TxtPrecioDesde.Text) && int.TryParse(TxtPrecioDesde.Text, out unNumero))
 				filtro.PrecioDesde = int.Parse(TxtPrecioDesde.Text);
 			else

@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BuyMotors
+namespace BuyMotors.UI
 {
 
 
-	public partial class SiteMaster
+	public partial class ListadoCarrito
 	{
 
 		/// <summary>
-		/// Form1 control.
+		/// gvCarrito control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
+		protected global::System.Web.UI.WebControls.GridView gvCarrito;
 
 		/// <summary>
-		/// MainContent control.
+		/// LblResultado control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+		protected global::System.Web.UI.WebControls.Label LblResultado;
 	}
 }

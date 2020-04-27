@@ -202,6 +202,7 @@
     <Content Include="Images\ranger.jpg" />
     <Content Include="Images\spin.jpg" />
     <Content Include="Images\vento.jpg" />
+    <Content Include="ListadoCarrito.aspx" />
     <Content Include="ListadoVehiculos.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -395,6 +396,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoCarrito.aspx.cs">
+      <DependentUpon>ListadoCarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoCarrito.aspx.designer.cs">
+      <DependentUpon>ListadoCarrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoVehiculos.aspx.cs">
       <DependentUpon>ListadoVehiculos.aspx</DependentUpon>

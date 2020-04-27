@@ -11,5 +11,12 @@
         public int Precio { get; set; }
         public int AnioFabricacion { get; set; }
 		public string ImagenNombre { get; set; }
+		public string Descripcion
+		{
+			get
+			{
+				return string.Format("{0} - {1} - {2} - {3} - {4} - {5} - {6}", Patente, Tipo.Nombre, Categoria.Nombre, Modelo.Marca.Nombre, Modelo.Nombre, Color.Nombre, AnioFabricacion);
+			}
+		}
 	}
 }

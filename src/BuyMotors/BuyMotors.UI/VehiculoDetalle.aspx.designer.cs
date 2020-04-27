@@ -15,6 +15,24 @@ namespace BuyMotors.UI
 	{
 
 		/// <summary>
+		/// HiddenVehiculoId control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.HiddenField HiddenVehiculoId;
+
+		/// <summary>
+		/// HiddenVehiculoPrecio control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.HiddenField HiddenVehiculoPrecio;
+
+		/// <summary>
 		/// LblTipoVehiculo control.
 		/// </summary>
 		/// <remarks>

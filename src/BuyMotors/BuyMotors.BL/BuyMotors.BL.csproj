@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BackupManager.cs" />
     <Compile Include="BitacoraManager.cs" />
+    <Compile Include="CarritoManager.cs" />
     <Compile Include="Encriptador.cs" />
     <Compile Include="Familias.cs" />
     <Compile Include="IntegridadDatos.cs" />
