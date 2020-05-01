@@ -40,7 +40,7 @@ namespace BuyMotors.DAL
 							" INNER JOIN TipoVehiculo t ON t.Id=v.TipoVehiculoId" +
 							" INNER JOIN Modelo m ON m.Id=v.ModeloId" +
 							" INNER JOIN Marca ma ON ma.Id=m.MarcaId" +
-							" WHERE 1=1" + filtroSql +
+							" WHERE v.Disponible = 1" + filtroSql +
 							" ORDER BY v.Id";
 			DataTable tabla = SqlHelper.Obtener(query, parameters == null ? null : parameters.ToArray());
 
@@ -83,9 +83,8 @@ namespace BuyMotors.DAL
 
 		public static Vehiculo ObtenerVehiculo(int Id)
 		{
-			List<SqlParameter> parameters = null;
-			parameters = new List<SqlParameter>();
-			string filtroSql = " v.Id=@Id";
+			List<SqlParameter> parameters = new List<SqlParameter>();
+			string filtroSql = " v.Disponible = 1 AND v.Id=@Id";
 			parameters.Add(new SqlParameter("@Id", Id));
 
 			string query = "SELECT v.Id,v.Patente,v.ColorId,c.Nombre AS Color,v.ModeloId,m.Nombre AS Modelo,m.MarcaId,ma.Nombre AS Marca,v.Precio,v.AnioFabricacion,v.TipoVehiculoId,t.Nombre AS Tipo,v.CategoriaVehiculoId,ca.Nombre AS Categoria,v.ImagenNombre" +
