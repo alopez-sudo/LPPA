@@ -17,11 +17,31 @@
 |
 	<script>
 		function validar() {
+
+			// validar destino
 			var radios = document.getElementsByName("destino");
 			if (radios[0].checked == false && radios[1].checked == false) {
 				alert("Debe seleccionar un destino");
-				return true;
+				return false;
 			}
+
+			// validar categoria
+			var radios = document.getElementsByName("estrella");
+			if (radios[0].checked == false && radios[1].checked == false) {
+				alert("Debe seleccionar una categoría");
+				return false;
+			}
+
+			if (document.getElementById("TxtCantidad").value == "") {
+				alert("Debe ingresar la cantidad de personas");
+				return false;
+			}
+
+			if (document.getElementById("TxtDias").value == "") {
+				alert("Debe ingresar la cantidad de días");
+				return false;
+			}
+
 			return true;
 		}
 	</script>
