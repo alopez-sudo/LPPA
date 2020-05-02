@@ -11,7 +11,10 @@ namespace WebApp
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			LblDestino.Text = Request.Form["destino"];
+			LblCategoria.Text = Request.Form["estrella"];
+			LblCantidadDePersonas.Text = Request.Form["TxtCantidad"];
+			LblCantidadDeDias.Text = Request.Form["TxtDias"];
 		}
 	}
 }

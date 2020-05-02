@@ -24,30 +24,48 @@ namespace WebApp
 		protected global::System.Web.UI.HtmlControls.HtmlForm dato;
 
 		/// <summary>
-		/// opMarDelPlata control.
+		/// destino control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.RadioButton opMarDelPlata;
+		protected global::System.Web.UI.WebControls.RadioButtonList destino;
 
 		/// <summary>
-		/// opNiza control.
+		/// estrella control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.RadioButton opNiza;
+		protected global::System.Web.UI.WebControls.RadioButtonList estrella;
 
 		/// <summary>
-		/// BtnBuscar control.
+		/// TxtCantidad control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button BtnBuscar;
+		protected global::System.Web.UI.WebControls.TextBox TxtCantidad;
+
+		/// <summary>
+		/// TxtDias control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox TxtDias;
+
+		/// <summary>
+		/// BtnEnviar control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button BtnEnviar;
 	}
 }

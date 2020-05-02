@@ -14,14 +14,14 @@
 
 	<webopt:BundleReference runat="server" Path="~/Content/css" />
 	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+|
 	<script>
 		function validar() {
-			if (!document.getElementById("opMarDelPlata").checked && !document.getElementById("opNiza").checked) {
+			var radios = document.getElementsByName("destino");
+			if (radios[0].checked == false && radios[1].checked == false) {
 				alert("Debe seleccionar un destino");
-				return false;
+				return true;
 			}
-
 			return true;
 		}
 	</script>
@@ -53,17 +53,39 @@
 			<div class="form-group">
 				<label>¿Donde va de vacaciones?</label>
 				<div class="form-group">
-					<asp:RadioButton ID="opMarDelPlata" runat="server" GroupName="destino" Text="&nbsp;Mar del Plata" />
-				</div>
-				<div class="form-group">
-					<asp:RadioButton ID="opNiza" runat="server" GroupName="destino" Text="&nbsp;Niza" />
+					<asp:RadioButtonList ID="destino" runat="server" RepeatLayout="Flow">
+						<asp:ListItem Value="Mar del Plata"> Mar del Plata</asp:ListItem>
+						<asp:ListItem Value="Niza"> Niza</asp:ListItem>
+					</asp:RadioButtonList>
 				</div>
 			</div>
 
-			<%-- demas campos --%>
+			<div class="form-group">
+				<label>¿Cual es la categoría?</label>
+				<div class="form-group">
+					<asp:RadioButtonList ID="estrella" runat="server" RepeatLayout="Flow">
+						<asp:ListItem Value="Tres"> Tres</asp:ListItem>
+						<asp:ListItem Value="Cuatro"> Cuatro</asp:ListItem>
+					</asp:RadioButtonList>
+				</div>
+			</div>
 
 			<div class="form-group">
-				<asp:Button ID="BtnBuscar" runat="server" Text="Enviar" CssClass="btn btn-primary" OnClick="BtnEnviar_Click" OnClientClick="javascript:return validar();" />
+				<label>Cantidad de Personas</label>
+				<div class="form-group">
+					<asp:TextBox ID="TxtCantidad" runat="server" CssClass="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Cantidad de días</label>
+				<div class="form-group">
+					<asp:TextBox ID="TxtDias" runat="server" CssClass="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<asp:Button ID="BtnEnviar" runat="server" Text="Enviar" CssClass="btn btn-primary" OnClick="BtnEnviar_Click" OnClientClick="javascript:return validar();" />
 			</div>
 
 		</form>

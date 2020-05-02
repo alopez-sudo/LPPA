@@ -19,7 +19,7 @@
 <body>
 	<div class="container body-content">
 
-		<h3>Cotización</h3>
+		<h3>Cotización Vacaciones</h3>
 
 		<form id="dato" method="post"  runat="server">
 			<asp:ScriptManager runat="server">
@@ -39,9 +39,10 @@
 				</Scripts>
 			</asp:ScriptManager>
 
-			<div class="form-group">
-				
-			</div>
+			<h3>Destino: <asp:Label id="LblDestino" runat="server" /></h3><br />
+			<h3>Categoría: <asp:Label id="LblCategoria" runat="server" /></h3><br />
+			<h3>Cantidad de personas: <asp:Label id="LblCantidadDePersonas" runat="server" /></h3><br />
+			<h3>Cantidad de días: <asp:Label id="LblCantidadDeDias" runat="server" /></h3><br />
 
 		</form>
 
