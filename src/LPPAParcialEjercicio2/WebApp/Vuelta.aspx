@@ -44,6 +44,7 @@
 			<h4>Cantidad de personas: <asp:Label id="LblCantidadDePersonas" runat="server" /></h4>
 			<h4>Cantidad de días: <asp:Label id="LblCantidadDeDias" runat="server" /></h4>
 
+			<asp:HyperLink ID="VolverHyperlink" runat="server" NavigateUrl='~\Default.aspx' Text="Volver a Cotizar" CssClass="btn btn-primary"></asp:HyperLink>
 		</form>
 
 		<hr />
