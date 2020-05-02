@@ -39,10 +39,10 @@
 				</Scripts>
 			</asp:ScriptManager>
 
-			<h3>Destino: <asp:Label id="LblDestino" runat="server" /></h3><br />
-			<h3>Categoría: <asp:Label id="LblCategoria" runat="server" /></h3><br />
-			<h3>Cantidad de personas: <asp:Label id="LblCantidadDePersonas" runat="server" /></h3><br />
-			<h3>Cantidad de días: <asp:Label id="LblCantidadDeDias" runat="server" /></h3><br />
+			<h4>Destino: <asp:Label id="LblDestino" runat="server" /></h4>
+			<h4>Categoría: <asp:Label id="LblCategoria" runat="server" /></h4>
+			<h4>Cantidad de personas: <asp:Label id="LblCantidadDePersonas" runat="server" /></h4>
+			<h4>Cantidad de días: <asp:Label id="LblCantidadDeDias" runat="server" /></h4>
 
 		</form>
 

@@ -16,18 +16,23 @@
 	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 |
 	<script>
-		function validar() {
+		function validarOpciones(elementId) {
+			var c = 0;
+			for (var i = 0; i < document.getElementsByName(elementId).length; i++) {
+				if (document.getElementsByName(elementId)[i].checked) {
+					c++;
+				}
+			}
+			return c;
+		}
 
-			// validar destino
-			var radios = document.getElementsByName("destino");
-			if (radios[0].checked == false && radios[1].checked == false) {
+		function validar() {
+			if (validarOpciones("destino") == 0) {
 				alert("Debe seleccionar un destino");
 				return false;
 			}
 
-			// validar categoria
-			var radios = document.getElementsByName("estrella");
-			if (radios[0].checked == false && radios[1].checked == false) {
+			if (validarOpciones("estrella") == 0) {
 				alert("Debe seleccionar una categoría");
 				return false;
 			}
