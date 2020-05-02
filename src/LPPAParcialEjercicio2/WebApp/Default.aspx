@@ -76,7 +76,7 @@
 			</asp:ScriptManager>
 
 			<div class="form-group">
-				<label>¿Donde va de vacaciones?</label>
+				<label>¿Dónde va de vacaciones?</label>
 				<div class="form-group">
 					<asp:RadioButtonList ID="destino" runat="server" RepeatLayout="Flow">
 						<asp:ListItem Value="Mar del Plata"> Mar del Plata</asp:ListItem>
@@ -86,7 +86,7 @@
 			</div>
 
 			<div class="form-group">
-				<label>¿Cual es la categoría?</label>
+				<label>¿Cuál es la categoría?</label>
 				<div class="form-group">
 					<asp:RadioButtonList ID="estrella" runat="server" RepeatLayout="Flow">
 						<asp:ListItem Value="Tres"> Tres</asp:ListItem>
@@ -118,6 +118,13 @@
 		<hr />
 		<footer>
 			<p>&copy; <%: DateTime.Now.Year %> - LPPA - 1er. Parcial - Ejercicio N°2</p>
+			<p>Integrantes:</p>
+			<ul>
+				<li>Jorge Luis Zurriable</li>
+				<li>Ariel Lopez</li>
+				<li>Tomas Schiter</li>
+				<li>Mariano Jorreto</li>
+			</ul>
 		</footer>
 	</div>
 </body>

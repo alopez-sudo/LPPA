@@ -49,6 +49,13 @@
 		<hr />
 		<footer>
 			<p>&copy; <%: DateTime.Now.Year %> - LPPA - 1er. Parcial - Ejercicio N°2</p>
+			<p>Integrantes:</p>
+			<ul>
+				<li>Jorge Luis Zurriable</li>
+				<li>Ariel Lopez</li>
+				<li>Tomas Schiter</li>
+				<li>Mariano Jorreto</li>
+			</ul>
 		</footer>
 	</div>
 </body>
