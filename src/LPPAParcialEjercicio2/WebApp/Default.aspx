@@ -79,8 +79,8 @@
 				<label>¿Dónde va de vacaciones?</label>
 				<div class="form-group">
 					<asp:RadioButtonList ID="destino" runat="server" RepeatLayout="Flow">
-						<asp:ListItem Value="Mar del Plata"> Mar del Plata</asp:ListItem>
-						<asp:ListItem Value="Niza"> Niza</asp:ListItem>
+						<asp:ListItem Value="Mar del Plata">Mar del Plata</asp:ListItem>
+						<asp:ListItem Value="Niza">Niza</asp:ListItem>
 					</asp:RadioButtonList>
 				</div>
 			</div>
@@ -89,8 +89,8 @@
 				<label>¿Cuál es la categoría?</label>
 				<div class="form-group">
 					<asp:RadioButtonList ID="estrella" runat="server" RepeatLayout="Flow">
-						<asp:ListItem Value="Tres"> Tres</asp:ListItem>
-						<asp:ListItem Value="Cuatro"> Cuatro</asp:ListItem>
+						<asp:ListItem Value="Tres">Tres</asp:ListItem>
+						<asp:ListItem Value="Cuatro">Cuatro</asp:ListItem>
 					</asp:RadioButtonList>
 				</div>
 			</div>
@@ -98,14 +98,14 @@
 			<div class="form-group">
 				<label>Cantidad de Personas</label>
 				<div class="form-group">
-					<asp:TextBox ID="TxtCantidad" runat="server" CssClass="form-control" />
+					<asp:TextBox TextMode="Number" ID="TxtCantidad" runat="server" CssClass="form-control" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label>Cantidad de días</label>
 				<div class="form-group">
-					<asp:TextBox ID="TxtDias" runat="server" CssClass="form-control" />
+					<asp:TextBox TextMode="Number" ID="TxtDias" runat="server" CssClass="form-control" />
 				</div>
 			</div>
 
