@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Web;
-using System.Web.UI;
 using BuyMotors.BL;
 using BuyMotors.BE;
 using BuyMotors.UI;
@@ -9,6 +7,8 @@ namespace BuyMotors.Account
 {
     public partial class Login : BasePage
     {
+        protected string mensajeError;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (UsuarioLogueado != null)
@@ -36,7 +36,8 @@ namespace BuyMotors.Account
 
                     if (UsuarioManager.TienePermiso(usuarioLogueado, Permisos.CHEQUEO_DV))
                     {
-                        Session["MostrarMensajeDV"] = !IntegridadDatos.Chequear();
+                        Session["MostrarMensajeDV"] = !IntegridadDatos.Chequear(out string mensaje);
+                        Session["MensajeDV"] = mensaje;
                     }
 
                     SalirDeLaPagina(true);

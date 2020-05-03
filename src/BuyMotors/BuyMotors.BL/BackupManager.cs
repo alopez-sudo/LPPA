@@ -15,10 +15,8 @@ namespace BuyMotors.BL
 
         public static bool HacerBackup(out string mensajeError)
         {
-            mensajeError = "";
-
             // Primero debo chequear la integridad de la BD
-            if (DigitoVerificador.VerificarIntegridad())
+            if (DigitoVerificador.VerificarIntegridad(out mensajeError))
             {
                 try
                 {
@@ -34,11 +32,8 @@ namespace BuyMotors.BL
                     Log.Log.Grabar(ex);
                 }
             }
-            else
-            {
-                mensajeError = "No se puede hacer un backup porque la base de datos no está íntegra";
-            }
 
+            mensajeError += ". No se puede hacer un backup porque la base de datos no está íntegra";
             return false;
         }
 

@@ -4,9 +4,9 @@ namespace BuyMotors.BL
 {
     public static class IntegridadDatos
     {
-        public static bool Chequear()
+        public static bool Chequear(out string mensaje)
         {
-            return DigitoVerificador.VerificarIntegridad();
+            return DigitoVerificador.VerificarIntegridad(out mensaje);
         }
     }
 }
