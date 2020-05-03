@@ -11,11 +11,12 @@
     <form id="form1" method="post" action="Calculo.aspx">
         <div>
             APELLIDO
-            <input type="text"  id="apellido"   name="apellido" />
+            <input type="text" id="apellido" name="apellido" />
             EDAD
-            <input type="text"  id="edad"   name="edad" />
+            <input type="text" id="edad" name="edad"/>
         </div>
         <input type="submit" value="Enviar" />
+        
     </form>
 </body>
 </html>

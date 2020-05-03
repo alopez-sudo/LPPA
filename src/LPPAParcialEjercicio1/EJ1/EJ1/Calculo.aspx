@@ -10,12 +10,9 @@
         string ape;
         Int16 ed;
         string edadenmeses;
-
         ape = Request.Form["APELLIDO"];
         ed = Convert.ToInt16( Request.Form["EDAD"]);
         edadenmeses = Convert.ToString( ed*12);
-
-
         %>
     <%Response.Write(ape); %>
     SU EDAD EN MESES ES 
