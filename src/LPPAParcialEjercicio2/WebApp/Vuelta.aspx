@@ -1,65 +1,34 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Vuelta.aspx.cs" Inherits="WebApp.Vuelta" %>
-
+﻿<%@ Page Language="C#" %>
 <!DOCTYPE html>
 
 <html lang="en">
 <head runat="server">
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>VIAJES Y TURISMO</title>
+	<title>VUELTA</title>
+	<%
+		string destino = Request.Form["destino"];
+		string categoria = Request.Form["estrella"];
+		int cantidadPersonas = int.Parse(Request.Form["personas"]);
+		int cantidadDias = int.Parse(Request.Form["dias"]);
 
-	<asp:PlaceHolder runat="server">
-		<%: Scripts.Render("~/bundles/modernizr") %>
-	</asp:PlaceHolder>
+		double precio = destino == "MdelPlata" ? 2000 : 30000;
+		if (categoria == "Cuatro")
+		{
+			precio *= 1.2;
+		}
 
-	<webopt:bundlereference runat="server" path="~/Content/css" />
-	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		precio *= cantidadPersonas;
+		precio *= cantidadDias;
+
+		Session["Precio"] = precio;
+	%>
 </head>
-
 <body>
-	<div class="container body-content">
-
-		<h3>Cotización Vacaciones</h3>
-
-		<form id="dato" method="post"  runat="server">
-			<asp:ScriptManager runat="server">
-				<Scripts>
-					<asp:ScriptReference Name="MsAjaxBundle" />
-					<asp:ScriptReference Name="jquery" />
-					<asp:ScriptReference Name="bootstrap" />
-					<asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-					<asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-					<asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-					<asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-					<asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-					<asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-					<asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-					<asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-					<asp:ScriptReference Name="WebFormsBundle" />
-				</Scripts>
-			</asp:ScriptManager>
-
-			<h4>Destino: <asp:Label id="LblDestino" runat="server" /></h4>
-			<h4>Categoría: <asp:Label id="LblCategoria" runat="server" /></h4>
-			<h4>Cantidad de personas: <asp:Label id="LblCantidadDePersonas" runat="server" /></h4>
-			<h4>Cantidad de días: <asp:Label id="LblCantidadDeDias" runat="server" /></h4>
-			<br />
-			<h4>Precio total: $<asp:Label id="LblPrecioTotal" runat="server" /></h4>
-
-			<asp:HyperLink ID="VolverHyperlink" runat="server" NavigateUrl='~\Default.aspx' Text="Volver a Cotizar" CssClass="btn btn-primary"></asp:HyperLink>
-		</form>
-
-		<hr />
-		<footer>
-			<p>&copy; <%: DateTime.Now.Year %> - LPPA - 1er. Parcial - Ejercicio N°2</p>
-			<p>Integrantes:</p>
-			<ul>
-				<li>Jorge Luis Zurriable</li>
-				<li>Ariel Lopez</li>
-				<li>Tomas Schiter</li>
-				<li>Mariano Jorreto</li>
-			</ul>
-		</footer>
-	</div>
+	<form id="form1" runat="server">
+		El costo es $
+		<% Response.Write(Session["Precio"]); %>
+		<div>
+			<input value="Retornar a la página de inicio" id="back" type="button" onclick="javascript:location.href='Default.aspx'" />
+		</div>
+	</form>
 </body>
 </html>

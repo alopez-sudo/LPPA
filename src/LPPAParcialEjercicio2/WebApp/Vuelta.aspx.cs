@@ -11,25 +11,25 @@ namespace WebApp
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			string destino = Request.Form["destino"];
-			string categoria = Request.Form["estrella"];
-			int cantidadPersonas = int.Parse(Request.Form["TxtCantidad"]);
-			int cantidadDias = int.Parse(Request.Form["TxtDias"]);
+			//string destino = Request.Form["destino"];
+			//string categoria = Request.Form["estrella"];
+			//int cantidadPersonas = int.Parse(Request.Form["TxtCantidad"]);
+			//int cantidadDias = int.Parse(Request.Form["TxtDias"]);
 
-			double precio = destino == "Mar del Plata" ? 2000 : 30000;
-			if (categoria == "Cuatro")
-			{
-				precio *= 1.2;
-			}
+			//double precio = destino == "Mar del Plata" ? 2000 : 30000;
+			//if (categoria == "Cuatro")
+			//{
+			//	precio *= 1.2;
+			//}
 
-			precio *= cantidadPersonas;
-			precio *= cantidadDias;
+			//precio *= cantidadPersonas;
+			//precio *= cantidadDias;
 
-			LblDestino.Text = destino;
-			LblCategoria.Text = categoria;
-			LblCantidadDePersonas.Text = Request.Form["TxtCantidad"];
-			LblCantidadDeDias.Text = Request.Form["TxtDias"];
-			LblPrecioTotal.Text = precio.ToString();
+			//LblDestino.Text = destino;
+			//LblCategoria.Text = categoria;
+			//LblCantidadDePersonas.Text = Request.Form["TxtCantidad"];
+			//LblCantidadDeDias.Text = Request.Form["TxtDias"];
+			//LblPrecioTotal.Text = precio.ToString();
 		}
 	}
 }
