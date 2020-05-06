@@ -63,7 +63,7 @@
                         {%>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Account/Manage" title="Configuración de la cuenta">Hola, <%: ((BuyMotors.BE.Usuario)Session["UsuarioLogueado"]).Nombre %>!</a></li>
-                        <li><a runat="server" href="~/ListadoCarrito.aspx" title="Cerrar sesión">Carrito</a></li>
+                        <li><a runat="server" href="~/ListadoCarrito.aspx" title="Carrito">Carrito</a></li>
                         <li><a runat="server" href="~/Account/Logout" title="Cerrar sesión">Cerrar sesión</a></li>
                     </ul>
                     <% if (Session["MostrarMensajeDV"] != null && (bool)Session["MostrarMensajeDV"] == true)
