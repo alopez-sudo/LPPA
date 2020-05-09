@@ -10,13 +10,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <%= Apellido %>
+            <% Response.Write(Apellido); %>
         </div>
         <div>
-            <%= Edad %>
+            <% Response.Write(Edad); %>
         </div>
         <div>
-            <%= Mensaje %>
+            <% Response.Write(Mensaje); %>
         </div>
         <div>
             <input type="button" value="Volver a la página principal" onclick="javascript: location.href = 'Default.aspx';" />
