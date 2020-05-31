@@ -33,7 +33,11 @@ namespace BuyMotors.DAL
             if (tabla == null || tabla.Rows.Count == 0)
                 return null;
 
-            Carrito carrito = new Carrito();
+            Carrito carrito = new Carrito()
+            {
+                Usuario = UsuarioMapper.Obtener(usuarioId)
+            };
+
             List<CarritoDetalle> detalles = new List<CarritoDetalle>();
             foreach (DataRow fila in tabla.Rows)
             {

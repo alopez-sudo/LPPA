@@ -7,6 +7,32 @@ namespace BuyMotors.DAL
 {
     public class UsuarioMapper
     {
+        public static Usuario Obtener(int id)
+        {
+            string query = "SELECT Nombre, Apellido, Telefono, Email FROM Usuario WHERE Id = @id";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@id", id)
+            };
+
+            DataTable table = SqlHelper.Obtener(query, parameters);
+            if (table != null && table.Rows.Count > 0)
+            {
+                Usuario usuario = new Usuario
+                {
+                    Id = id,
+                    Nombre = table.Rows[0]["Nombre"].ToString(),
+                    Apellido = table.Rows[0]["Apellido"].ToString(),
+                    Telefono = table.Rows[0]["Telefono"].ToString(),
+                    Email = table.Rows[0]["Email"].ToString()
+                };
+
+                return usuario;
+            }
+
+            return null;
+        }
+
         public static Usuario Obtener(string email, string contrasenia)
         {
             string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono FROM Usuario " +

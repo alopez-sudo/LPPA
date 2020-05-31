@@ -23,11 +23,13 @@ namespace BuyMotors.UI
                 gvCarrito.DataSource = carrito.Detalles;
                 gvCarrito.DataBind();
                 gvCarrito.Visible = true;
+                BtnFinalizarCompra.Visible = true;
                 LblResultado.Visible = false;
             }
             else
             {
                 gvCarrito.Visible = false;
+                BtnFinalizarCompra.Visible = false;
                 LblResultado.Visible = true;
             }
         }
@@ -42,6 +44,21 @@ namespace BuyMotors.UI
             };
             CarritoManager.EliminarDetalle(detalle);
             CargarGvCarrito();
+        }
+
+        protected void BtnFinalizarCompra_Click(object sender, EventArgs e)
+        {
+            Carrito carrito = CarritoManager.ObtenerCarrito(UsuarioLogueado.Id, Session.SessionID);
+            if (carrito != null && CarritoManager.FinalizarCompra(carrito))
+            {
+                Response.Redirect("CompraFinalizada.aspx");
+            }
+            else
+            {
+                // Mostrar que hubo error
+                FailureText.Text = "Ocurrió un error al generar la factura";
+                ErrorMessage.Visible = true;
+            }
         }
     }
 }

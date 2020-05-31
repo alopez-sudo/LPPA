@@ -130,5 +130,27 @@ namespace BuyMotors.DAL
 
 			return vehiculo;
 		}
+
+		public static bool EstaDisponible(Vehiculo vehiculo)
+        {
+			string query = "SELECT Id FROM Vehiculo WHERE Id = @id AND Disponible = 1";
+			SqlParameter[] parameters = new SqlParameter[]
+			{
+				new SqlParameter("@id", vehiculo.Id)
+			};
+
+			return SqlHelper.ObtenerValor<int>(query, parameters) > 0;
+        }
+
+		public static void MarcarNoDisponible(Vehiculo vehiculo)
+        {
+			string query = "UPDATE Vehiculo SET Disponible = 0 WHERE Id = @id";
+			SqlParameter[] parameters = new SqlParameter[]
+			{
+				new SqlParameter("@id", vehiculo.Id)
+			};
+
+			SqlHelper.Ejecutar(query, parameters);
+		}
 	}
 }
