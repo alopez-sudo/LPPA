@@ -33,22 +33,22 @@ namespace BuyMotors.UI
         protected global::System.Web.UI.WebControls.Literal FailureText;
 
         /// <summary>
-        /// Control TxtFechaDesde.
+        /// Control CalFechaDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFechaDesde;
+        protected global::System.Web.UI.WebControls.Calendar CalFechaDesde;
 
         /// <summary>
-        /// Control TxtFechaHasta.
+        /// Control CalFechaHasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFechaHasta;
+        protected global::System.Web.UI.WebControls.Calendar CalFechaHasta;
 
         /// <summary>
         /// Control TxtUsuario.

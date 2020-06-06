@@ -11,11 +11,11 @@
 		<div class="row col-md-12">
 			<div class="form-group col-md-4">
 				<label for="TxtFechaDesde">Fecha desde</label>
-				<asp:TextBox ID="TxtFechaDesde" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
+				<asp:Calendar ID="CalFechaDesde" runat="server"></asp:Calendar>
 			</div>
 			<div class="form-group col-md-4">
 				<label for="TxtFechaHasta">Fecha hasta</label>
-				<asp:TextBox ID="TxtFechaHasta" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
+				<asp:Calendar ID="CalFechaHasta" runat="server"></asp:Calendar>
 			</div>
 			<div class="form-group col-md-4">
 				<label for="TxtUsuario">Usuario</label>
