@@ -44,18 +44,35 @@ namespace BuyMotors.UI
 
 		protected void BtnAgregarAlCarrito_Click(object sender, EventArgs e)
 		{
-			Vehiculo vehiculo = new Vehiculo();
-			vehiculo.Id = int.Parse(HiddenVehiculoId.Value);
-			vehiculo.Precio = int.Parse(HiddenVehiculoPrecio.Value);
-			CarritoDetalle detalle = new CarritoDetalle();
-			detalle.Vehiculo = vehiculo;
-			detalle.Cantidad = 1;
-			Carrito carrito = new Carrito();
-			carrito.FechaCreacion = DateTime.Now;
-			carrito.Usuario = UsuarioLogueado;
-			carrito.UsuarioSessionId = Session.SessionID;
-			carrito.Detalles.Add(detalle);
-			CarritoManager.AgregarDetalle(carrito);
+			Carrito carrito = CarritoManager.ObtenerCarrito(UsuarioLogueado.Id, Session.SessionID);
+			if (carrito == null)
+            {
+				carrito = new Carrito
+				{
+					FechaCreacion = DateTime.Now,
+					Usuario = UsuarioLogueado,
+					UsuarioSessionId = Session.SessionID
+				};
+			}
+
+			int vehiculoId = int.Parse(HiddenVehiculoId.Value);
+			if (!carrito.Detalles.Any(d => d.Vehiculo.Id == vehiculoId))
+            {
+				Vehiculo vehiculo = new Vehiculo
+				{
+					Id = vehiculoId,
+					Precio = int.Parse(HiddenVehiculoPrecio.Value)
+				};
+				CarritoDetalle detalle = new CarritoDetalle
+				{
+					Vehiculo = vehiculo,
+					Cantidad = 1
+				};
+
+				carrito.Detalles.Add(detalle);
+				CarritoManager.AgregarDetalle(carrito);
+			}
+			
 			Response.Redirect("ListadoCarrito.aspx");
 		}
 	}

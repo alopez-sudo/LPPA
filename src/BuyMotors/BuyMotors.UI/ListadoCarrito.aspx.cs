@@ -1,6 +1,7 @@
 ﻿using BuyMotors.BE;
 using BuyMotors.BL;
 using System;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace BuyMotors.UI
@@ -23,12 +24,15 @@ namespace BuyMotors.UI
                 gvCarrito.DataSource = carrito.Detalles;
                 gvCarrito.DataBind();
                 gvCarrito.Visible = true;
+                LblTotal.Text = "Total: $" + carrito.Detalles.Sum(d => d.Precio);
+                LblTotal.Visible = true;
                 BtnFinalizarCompra.Visible = true;
                 LblResultado.Visible = false;
             }
             else
             {
                 gvCarrito.Visible = false;
+                LblTotal.Visible = false;
                 BtnFinalizarCompra.Visible = false;
                 LblResultado.Visible = true;
             }

@@ -22,6 +22,7 @@
 				</Columns>
 				<HeaderStyle CssClass="thead-dark" />
 			</asp:GridView>
+			<h3><asp:Label id="LblTotal" runat="server" Text="Total: $" /></h3>
 			<asp:Button ID="BtnFinalizarCompra" runat="server" Text="Finalizar compra" OnClick="BtnFinalizarCompra_Click" />
 			<h3><asp:Label id="LblResultado" runat="server" Text="El carrito está vacio" /></h3>
 		</div>

@@ -35,7 +35,8 @@ namespace BuyMotors.DAL
 
             Carrito carrito = new Carrito()
             {
-                Usuario = UsuarioMapper.Obtener(usuarioId)
+                Usuario = UsuarioMapper.Obtener(usuarioId),
+                UsuarioSessionId = usuarioSessionId
             };
 
             List<CarritoDetalle> detalles = new List<CarritoDetalle>();
@@ -154,18 +155,21 @@ namespace BuyMotors.DAL
 
             foreach (CarritoDetalle detalle in carrito.Detalles)
             {
-                query = "INSERT INTO CarritoDetalle (CarritoId,VehiculoId,Cantidad,Precio)" +
-                         " VALUES (@CarritoId,@VehiculoId,@Cantidad,@Precio)";
-
-                SqlParameter[] parameters = new SqlParameter[]
+                if (detalle.Id == 0)
                 {
+                    query = "INSERT INTO CarritoDetalle (CarritoId,VehiculoId,Cantidad,Precio)" +
+                             " VALUES (@CarritoId,@VehiculoId,@Cantidad,@Precio)";
+
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
                     new SqlParameter("@CarritoId", carrito.Id),
                     new SqlParameter("@VehiculoId", detalle.Vehiculo.Id),
                     new SqlParameter("@Cantidad", detalle.Cantidad),
                     new SqlParameter("@Precio", detalle.Vehiculo.Precio)
-                };
+                    };
 
-                SqlHelper.Ejecutar(query, parameters);
+                    SqlHelper.Ejecutar(query, parameters);
+                }
             }
         }
         public static void EliminarDetalle(CarritoDetalle detalle)
