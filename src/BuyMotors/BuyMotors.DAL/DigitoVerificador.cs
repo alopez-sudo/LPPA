@@ -44,11 +44,12 @@ namespace BuyMotors.DAL
             RecalcularDVV("DVH", "FacturaCabecera", "Id");
         }
 
-        public static bool VerificarIntegridad(out string mensaje)
+        public static bool VerificarIntegridad(List<string> mensajes)
         {
             string query;
             DataTable tabla;
             StringBuilder sbDvhs = new StringBuilder();
+            bool sinErrores = true;
 
             #region Usuario
             query = "SELECT Id, Nombre, Apellido, Telefono, Email, Password, DVH FROM Usuario ORDER BY Id";
@@ -71,8 +72,8 @@ namespace BuyMotors.DAL
                     int dvhCalculado = ObtenerDVH(usuario);
                     if (dvhBD != dvhCalculado)
                     {
-                        mensaje = string.Format("El usuario con el ID {0} fue modificado externamente", usuario.Id);
-                        return false;
+                        mensajes.Add(string.Format("El usuario con el ID {0} fue modificado externamente.", usuario.Id));
+                        sinErrores = false;
                     }
                     sbDvhs.Append(dvhBD.ToString());
                 }
@@ -84,8 +85,8 @@ namespace BuyMotors.DAL
 
                 if (dvvCalculado != dvvBD)
                 {
-                    mensaje = "Un registro de la tabla Usuario fue eliminado externamente";
-                    return false;
+                    mensajes.Add("Un registro de la tabla Usuario fue eliminado externamente.");
+                    sinErrores = false;
                 }
             }
             #endregion
@@ -116,8 +117,8 @@ namespace BuyMotors.DAL
                     int dvhCalculado = ObtenerDVH(factura);
                     if (dvhBD != dvhCalculado)
                     {
-                        mensaje = string.Format("La factura con el ID {0} fue modificada externamente", factura.Id);
-                        return false;
+                        mensajes.Add(string.Format("La factura con el ID {0} fue modificada externamente.", factura.Id));
+                        sinErrores = false;
                     }
                     sbDvhs.Append(dvhBD.ToString());
                 }
@@ -129,14 +130,13 @@ namespace BuyMotors.DAL
 
                 if (dvvCalculado != dvvBD)
                 {
-                    mensaje = "Un registro de la tabla Factura fue eliminado externamente";
-                    return false;
+                    mensajes.Add("Un registro de la tabla Factura fue eliminado externamente.");
+                    sinErrores = false;
                 }
             }
             #endregion
 
-            mensaje = "";
-            return true;
+            return sinErrores;
         }
 
         private static int ObtenerDVH(Usuario usuario)

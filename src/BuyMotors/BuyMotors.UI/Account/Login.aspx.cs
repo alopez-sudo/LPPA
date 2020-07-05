@@ -2,6 +2,7 @@
 using BuyMotors.BL;
 using BuyMotors.BE;
 using BuyMotors.UI;
+using System.Collections.Generic;
 
 namespace BuyMotors.Account
 {
@@ -13,7 +14,7 @@ namespace BuyMotors.Account
         {
             if (UsuarioLogueado != null)
             {
-                SalirDeLaPagina(false);
+                SalirDeLaPagina();
 
                 // Esto va a servir para las demás páginas que requieren autenticación
                 //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
@@ -36,11 +37,12 @@ namespace BuyMotors.Account
 
                     if (UsuarioManager.TienePermiso(usuarioLogueado, Permisos.CHEQUEO_DV))
                     {
-                        Session["MostrarMensajeDV"] = !IntegridadDatos.Chequear(out string mensaje);
-                        Session["MensajeDV"] = mensaje;
+                        List<string> mensajesDeError = new List<string>();
+                        Session["MostrarMensajeDV"] = !IntegridadDatos.Chequear(mensajesDeError);
+                        Session["MensajeDV"] = string.Join(" ", mensajesDeError);
                     }
 
-                    SalirDeLaPagina(true);
+                    SalirDeLaPagina();
                 }
                 else
                 {
@@ -51,7 +53,7 @@ namespace BuyMotors.Account
             }
         }
 
-        private void SalirDeLaPagina(bool mostrarAlerta)
+        private void SalirDeLaPagina()
         {
             string urlRegreso = Request.QueryString["ReturnUrl"];
             if (!string.IsNullOrEmpty(urlRegreso))

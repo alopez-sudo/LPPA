@@ -1,6 +1,7 @@
 ﻿using BuyMotors.BE;
 using BuyMotors.BL;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -20,14 +21,16 @@ namespace BuyMotors.UI
 
         protected void BtnBackup_Click(object sender, EventArgs e)
         {
-            if (BackupManager.HacerBackup(out string mensajeError))
+            List<string> mensajesDeError = new List<string>();
+            if (BackupManager.HacerBackup(mensajesDeError))
             {
                 BitacoraManager.Grabar(UsuarioLogueado, "Se realizó un backup");
                 Response.Redirect("Backup.aspx");
             }
             else
             {
-                FailureText.Text = string.IsNullOrEmpty(mensajeError) ? "Ocurrió un error al realizar el backup" : mensajeError;
+                string mensaje = string.Join("<br/>", mensajesDeError);
+                FailureText.Text = string.IsNullOrEmpty(mensaje) ? "Ocurrió un error al realizar el backup" : mensaje;
                 ErrorMessage.Visible = true;
             }
         }

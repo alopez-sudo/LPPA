@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 
 namespace BuyMotors.BL
 {
@@ -13,10 +12,10 @@ namespace BuyMotors.BL
     {
         private const string DATE_FORMAT_FOR_FILE = "yyyy_MM_dd_HH_mm_ss";
 
-        public static bool HacerBackup(out string mensajeError)
+        public static bool HacerBackup(List<string> mensajesDeError)
         {
             // Primero debo chequear la integridad de la BD
-            if (DigitoVerificador.VerificarIntegridad(out mensajeError))
+            if (DigitoVerificador.VerificarIntegridad(mensajesDeError))
             {
                 try
                 {
@@ -33,7 +32,7 @@ namespace BuyMotors.BL
                 }
             }
 
-            mensajeError += ". No se puede hacer un backup porque la base de datos no está íntegra";
+            mensajesDeError.Add("No se puede hacer un backup porque la base de datos no está íntegra.");
             return false;
         }
 
