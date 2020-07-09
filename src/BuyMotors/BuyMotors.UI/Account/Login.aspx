@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Registrarse como usuario nuevo</asp:HyperLink>
+                    <asp:HyperLink runat="server" ID="RegisterHyperLink" NavigateUrl='~/Account/Register.aspx'>Registrarse como usuario nuevo</asp:HyperLink>
                 </p>
             </section>
         </div>
