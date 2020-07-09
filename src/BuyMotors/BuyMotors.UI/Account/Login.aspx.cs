@@ -39,8 +39,8 @@ namespace BuyMotors.Account
                     {
                         List<string> mensajesDeError = new List<string>();
                         Session["MostrarMensajeDV"] = !IntegridadDatos.Chequear(mensajesDeError);
-                        Session["MensajeDV"] = string.Join(" ", mensajesDeError);
-                    }
+						Session["MensajeDV"] = string.Format(@"Error de integridad de datos:\n{0}", string.Join(@"\n", mensajesDeError));
+					}
 
                     SalirDeLaPagina();
                 }

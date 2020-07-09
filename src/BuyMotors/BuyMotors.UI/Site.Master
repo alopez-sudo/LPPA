@@ -70,7 +70,7 @@
                         {
                             Session["MostrarMensajeDV"] = false;%>
                     <script>
-                        alert('<%= Session["MensajeDV"] != null && !string.IsNullOrEmpty(Session["MensajeDV"].ToString()) ? Session["MensajeDV"].ToString() : "La base de datos fue modificada externamente. Por favor, restaure algún backup." %>');
+						alert('<%= Session["MensajeDV"] != null && !string.IsNullOrEmpty(Session["MensajeDV"].ToString()) ? Session["MensajeDV"].ToString() : @"Error de integridad de datos.\nLa base de datos fue modificada externamente.\nPor favor, restaure algún backup." %>');
                     </script>
                     <% }
                         } %>
