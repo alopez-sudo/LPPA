@@ -12,14 +12,15 @@ namespace CalcularEsfuerzoSesion
 
         protected void BtnCalcularEsfuerzo_Click(object sender, EventArgs e)
         {
-            int l = int.Parse(txtL.Text);
-            int ck = int.Parse(txtCk.Text);
-            double td = double.Parse(txtTd.Text);
+			double l = double.Parse(txtL.Text);
+			double ck = double.Parse(txtCk.Text);
+			double td = double.Parse(txtTd.Text);
 
-            double esfuerzo = Math.Pow(l, 3) / (Math.Pow(ck, 3) * Math.Pow(td, 4));
-            Session["Esfuerzo"] = esfuerzo;
+			Session["l"] = l;
+			Session["ck"] = ck;
+			Session["td"] = td;
 
-            Response.Redirect("Resultado.aspx");
+			Response.Redirect("Resultado.aspx");
         }
     }
 }
