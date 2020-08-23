@@ -12,9 +12,9 @@ namespace CalcularEsfuerzoSesion
 
         protected void BtnCalcularEsfuerzo_Click(object sender, EventArgs e)
         {
-			double l = double.Parse(txtL.Text);
-			double ck = double.Parse(txtCk.Text);
-			double td = double.Parse(txtTd.Text);
+            int l = int.Parse(txtL.Text);
+            int ck = int.Parse(txtCk.Text);
+            double td = double.Parse(txtTd.Text);
 
 			Session["l"] = l;
 			Session["ck"] = ck;
