@@ -6,12 +6,7 @@ using System.Web.Services;
 public class WebService : System.Web.Services.WebService
 {
 
-	public WebService()
-	{
-
-		//Uncomment the following line if using designed components 
-		//InitializeComponent(); 
-	}
+	public WebService() { }
 
 	[WebMethod]
 	public double CalculaEsfuerzo(double l, double ck, double td)
