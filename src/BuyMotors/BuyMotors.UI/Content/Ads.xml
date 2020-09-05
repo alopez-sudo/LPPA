@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/Images/bora.jpg</ImageUrl>
+    <Height>500</Height>
+    <Width>500</Width>
+    <NavigateUrl>~/VehiculoDetalle.aspx?CodigoVehiculo=14</NavigateUrl>
+    <AlternateText>VW Bora</AlternateText>
+    <Impressions>80</Impressions>
+    <Keyword>Bora</Keyword>
+    <Caption>VW Bora</Caption>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/ranger.jpg</ImageUrl>
+    <Height>500</Height>
+    <Width>500</Width>
+    <NavigateUrl>~/VehiculoDetalle.aspx?CodigoVehiculo=10</NavigateUrl>
+    <AlternateText>Ranger 4x4</AlternateText>
+    <Impressions>80</Impressions>
+    <Keyword>Camioneta</Keyword>
+    <Caption>Ranger 4x4</Caption>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/207.jpg</ImageUrl>
+    <Height>500</Height>
+    <Width>500</Width>
+    <NavigateUrl>~/VehiculoDetalle.aspx?CodigoVehiculo=11</NavigateUrl>
+    <AlternateText>Peugeot 207</AlternateText>
+    <Impressions>80</Impressions>
+    <Keyword>207</Keyword>
+    <Caption>Peugeot 207</Caption>
+  </Ad>
+</Advertisements>
