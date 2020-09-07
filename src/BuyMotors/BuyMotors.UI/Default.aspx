@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BuyMotors._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="row">
         <h2>Bienvenido a BuyMotors</h2>
         <div class="col-md-4">
@@ -20,5 +19,9 @@
         </div>
         <% } %>
     </div>
-
+    <div class="row">
+        <asp:AdRotator id="AdVehiculos" runat="server"
+            Target="_blank"
+            AdvertisementFile="~/Content/Ads.xml"/>
+    </div>
 </asp:Content>
