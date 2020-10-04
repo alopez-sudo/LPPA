@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using System.Xml;
+using System.Xml.XPath;
 
 namespace EjercicioIntegradorXml
 {
@@ -93,6 +94,20 @@ namespace EjercicioIntegradorXml
             miEscritor.WriteString(precio);
             miEscritor.WriteEndElement();
             miEscritor.WriteEndElement();
+        }
+
+        protected void BtnBuscarXPath_Click(object sender, EventArgs e)
+        {
+            XPathDocument xPathDocum = new XPathDocument(Server.MapPath("Libros.xml"));
+
+            XPathNavigator xNavegador = xPathDocum.CreateNavigator();
+            XPathNodeIterator iterador = xNavegador.Select("Libros/Libro[Editorial='" + txtBusquedaXpathEditorial.Text + "']/NombreLibro");
+
+            lblBusquedaXpath.Text = "Nombres de libros de la editorial " + txtBusquedaXpathEditorial.Text;
+            while (iterador.MoveNext())
+            {
+                lstBusquedaXpath.Items.Add(iterador.Current.Value);
+            }
         }
     }
 }
