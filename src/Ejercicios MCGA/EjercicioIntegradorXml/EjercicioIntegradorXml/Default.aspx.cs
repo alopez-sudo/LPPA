@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Web.UI;
 using System.Xml;
 using System.Xml.XPath;
+using System.Xml.Xsl;
 
 namespace EjercicioIntegradorXml
 {
@@ -9,7 +11,7 @@ namespace EjercicioIntegradorXml
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void BtnLeerConXmlTextReader_Click(object sender, EventArgs e)
@@ -108,6 +110,21 @@ namespace EjercicioIntegradorXml
             {
                 lstBusquedaXpath.Items.Add(iterador.Current.Value);
             }
+        }
+
+        protected void BtnBuscarXslt_Click(object sender, EventArgs e)
+        {
+            XsltArgumentList xsltArguments = new XsltArgumentList();
+            xsltArguments.AddParam("ParamEditorial", "", txtBusquedaXsltEditorial.Text);
+
+            XslCompiledTransform transform = new XslCompiledTransform();
+            transform.Load(Server.MapPath("Busqueda.xslt"));
+
+            StringWriter results = new StringWriter();
+            transform.Transform(Server.MapPath("Libros.xml"), xsltArguments, results);
+            string html = results.ToString();
+
+            lblBusquedaXslt.Text = html;
         }
     }
 }

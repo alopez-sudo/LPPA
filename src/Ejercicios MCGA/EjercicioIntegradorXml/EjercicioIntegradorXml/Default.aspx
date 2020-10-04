@@ -64,6 +64,15 @@
             <asp:Label ID="lblBusquedaXpath" runat="server"></asp:Label>
             <br />
             <asp:ListBox ID="lstBusquedaXpath" runat="server" Width="400px"></asp:ListBox>
+
+            <hr />
+
+            <h3>Búsqueda por XSLT</h3>
+            Editorial: <asp:TextBox ID="txtBusquedaXsltEditorial" runat="server"></asp:TextBox>
+            <br /><br />
+            <asp:Button ID="btnBuscarXslt" runat="server" Text="Buscar con XSLT" OnClick="BtnBuscarXslt_Click" />
+            <br /><br />
+            <asp:Label ID="lblBusquedaXslt" runat="server"></asp:Label>
         </div>
     </form>
 </body>
