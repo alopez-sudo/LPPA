@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Libros>
+  <Libro>
+    <NombreLibro>Origen</NombreLibro>
+    <Autor>Dan Brown</Autor>
+    <Editorial>Planeta</Editorial>
+    <Precio>1490</Precio>
+  </Libro>
+  <Libro>
+    <NombreLibro>El retorno de los dragones</NombreLibro>
+    <Autor>Margaret Weis - Tracy Hickman</Autor>
+    <Editorial>Timun Mas</Editorial>
+    <Precio>250</Precio>
+  </Libro>
+  <Libro>
+    <NombreLibro>La herida</NombreLibro>
+    <Autor>Jorge Fernandez</Autor>
+    <Editorial>Planeta</Editorial>
+    <Precio>600</Precio>
+  </Libro>
+  <Libro>
+    <NombreLibro>Ajuste de cuentas</NombreLibro>
+    <Autor>John Grisham</Autor>
+    <Editorial>Penguin Random House</Editorial>
+    <Precio>1424</Precio>
+  </Libro>
+</Libros>
