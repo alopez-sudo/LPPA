@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0"?>
 <Libros>
   <Libro>
     <NombreLibro>Origen</NombreLibro>
@@ -14,7 +14,7 @@
   </Libro>
   <Libro>
     <NombreLibro>La herida</NombreLibro>
-    <Autor>Jorge Fernandez</Autor>
+    <Autor>Jorge Fernandez Diaz</Autor>
     <Editorial>Planeta</Editorial>
     <Precio>600</Precio>
   </Libro>
