@@ -60,7 +60,17 @@ namespace BuyMotors.Account
 
         protected void ForgotPasswordLinkButton_Click(object sender, EventArgs e)
         {
+            string email = Email.Text;
+            string token = UsuarioManager.GenerarTokenContrasenia(email);
 
+            if (string.IsNullOrEmpty(token))
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+
+            Session["Email"] = email;
+            Session["PasswordToken"] = token;
+            Response.Redirect("ForgotPassword.aspx");
         }
 
         private void SalirDeLaPagina()

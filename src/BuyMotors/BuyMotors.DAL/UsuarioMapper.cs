@@ -35,7 +35,7 @@ namespace BuyMotors.DAL
 
         public static Usuario Obtener(string email)
         {
-            string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono, Password, IntentosLogin FROM Usuario " +
+            string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono, Password, IntentosLogin, TokenRecuperacion FROM Usuario " +
                 "WHERE Email = @email";
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -57,6 +57,7 @@ namespace BuyMotors.DAL
                         Email = email,
                         Contrasenia = table.Rows[0]["Password"].ToString(),
                         IntentosLogin = int.Parse(table.Rows[0]["IntentosLogin"].ToString()),
+                        TokenRecuperacion = table.Rows[0]["TokenRecuperacion"].ToString(),
                         Permisos = PermisoMapper.ObtenerPorUsuario(id)
                     };
                 }
@@ -148,10 +149,13 @@ namespace BuyMotors.DAL
                 return false;
             }
 
-            string query = "UPDATE Usuario set IntentosLogin = @intentosLogin WHERE Id = @id";
+            string query = "UPDATE Usuario set Password = @contrasenia, IntentosLogin = @intentosLogin, TokenRecuperacion = @token " +
+                "WHERE Id = @id";
             SqlParameter[] parameters = new SqlParameter[]
             {
+                new SqlParameter("@contrasenia", usuario.Contrasenia),
                 new SqlParameter("@intentosLogin", usuario.IntentosLogin),
+                new SqlParameter("@token", (object)usuario.TokenRecuperacion ?? DBNull.Value),
                 new SqlParameter("@id", usuario.Id)
             };
 

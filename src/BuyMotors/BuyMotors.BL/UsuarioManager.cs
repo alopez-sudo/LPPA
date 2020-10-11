@@ -2,6 +2,7 @@
 using BuyMotors.DAL;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BuyMotors.BL
 {
@@ -79,6 +80,56 @@ namespace BuyMotors.BL
         public static bool TienePermiso(Usuario usuario, string permiso)
         {
             return ChequearPermiso(usuario.Permisos, permiso);
+        }
+
+        public static string GenerarTokenContrasenia(string email)
+        {
+            Usuario usuario = UsuarioMapper.Obtener(email);
+            if (usuario != null)
+            {
+                Random random = new Random();
+                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                string token = new string(Enumerable.Repeat(chars, 40).Select(s => s[random.Next(s.Length)]).ToArray());
+
+                usuario.TokenRecuperacion = token;
+                UsuarioMapper.Guardar(usuario);
+
+                return token;
+            }
+
+            return "";
+        }
+
+        public static bool ValidarToken(string email, string token)
+        {
+            Usuario usuario = UsuarioMapper.Obtener(email);
+            if (usuario != null)
+            {
+                if (usuario.TokenRecuperacion == token)
+                {
+                    return true;
+                }
+                else
+                {
+                    usuario.TokenRecuperacion = null;
+                    UsuarioMapper.Guardar(usuario);
+                }
+            }
+
+            return false;
+        }
+
+        public static void RestablecerContrasenia(string email, string contrasenia)
+        {
+            Usuario usuario = UsuarioMapper.Obtener(email);
+            if (usuario != null)
+            {
+                usuario.Contrasenia = Encriptador.Encriptar(contrasenia);
+                usuario.IntentosLogin = 0;
+                usuario.TokenRecuperacion = null;
+
+                UsuarioMapper.Guardar(usuario);
+            }
         }
 
         private static bool ChequearPermiso(List<Permiso> permisos, string permisoAChequear)
