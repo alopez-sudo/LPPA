@@ -24,7 +24,7 @@ namespace BuyMotors.DAL
                     Nombre = table.Rows[0]["Nombre"].ToString(),
                     Apellido = table.Rows[0]["Apellido"].ToString(),
                     Telefono = table.Rows[0]["Telefono"].ToString(),
-                    Email = table.Rows[0]["Email"].ToString()
+                    Email = table.Rows[0]["Email"].ToString(),
                 };
 
                 return usuario;
@@ -33,29 +33,33 @@ namespace BuyMotors.DAL
             return null;
         }
 
-        public static Usuario Obtener(string email, string contrasenia)
+        public static Usuario Obtener(string email)
         {
-            string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono FROM Usuario " +
-                "WHERE Email = @email AND Password = @contrasenia";
+            string query = "SELECT TOP 1 Id, Nombre, Apellido, Telefono, Password, IntentosLogin FROM Usuario " +
+                "WHERE Email = @email";
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@email", email),
-                new SqlParameter("@contrasenia", contrasenia)
+                new SqlParameter("@email", email)
             };
 
             DataTable table = SqlHelper.Obtener(query, parameters);
             if (table != null && table.Rows.Count > 0)
             {
                 int id = int.Parse(table.Rows[0]["Id"].ToString());
-                return new Usuario
+                if (DigitoVerificador.VerificarUsuario(id))
                 {
-                    Id = id,
-                    Nombre = table.Rows[0]["Nombre"].ToString(),
-                    Apellido = table.Rows[0]["Apellido"].ToString(),
-                    Telefono = table.Rows[0]["Telefono"].ToString(),
-                    Email = email,
-                    Permisos = PermisoMapper.ObtenerPorUsuario(id)
-                };
+                    return new Usuario
+                    {
+                        Id = id,
+                        Nombre = table.Rows[0]["Nombre"].ToString(),
+                        Apellido = table.Rows[0]["Apellido"].ToString(),
+                        Telefono = table.Rows[0]["Telefono"].ToString(),
+                        Email = email,
+                        Contrasenia = table.Rows[0]["Password"].ToString(),
+                        IntentosLogin = int.Parse(table.Rows[0]["IntentosLogin"].ToString()),
+                        Permisos = PermisoMapper.ObtenerPorUsuario(id)
+                    };
+                }
             }
 
             return null;
@@ -138,8 +142,30 @@ namespace BuyMotors.DAL
 
         private static bool Actualizar(Usuario usuario)
         {
-            // TODO: Esto se hará cuando haga falta
-            return false;
+            // Ninguna actualización puede ocurrir si previamente el usuario no está íntegro
+            if (!DigitoVerificador.VerificarUsuario(usuario.Id))
+            {
+                return false;
+            }
+
+            string query = "UPDATE Usuario set IntentosLogin = @intentosLogin WHERE Id = @id";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@intentosLogin", usuario.IntentosLogin),
+                new SqlParameter("@id", usuario.Id)
+            };
+
+            try
+            {
+                SqlHelper.Ejecutar(query, parameters);
+                DigitoVerificador.ActualizarDV(usuario);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

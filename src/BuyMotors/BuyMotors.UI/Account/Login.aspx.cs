@@ -29,7 +29,7 @@ namespace BuyMotors.Account
         {
             if (IsValid)
             {
-                Usuario usuarioLogueado = UsuarioManager.Login(Email.Text, Password.Text);
+                Usuario usuarioLogueado = UsuarioManager.Login(Email.Text, Password.Text, out bool estaBloqueado);
                 if (usuarioLogueado != null)
                 {
                     UsuarioLogueado = usuarioLogueado;
@@ -44,6 +44,11 @@ namespace BuyMotors.Account
 
                     SalirDeLaPagina();
                 }
+                else if (estaBloqueado)
+                {
+                    FailureText.Text = "El usuario está bloquado. Restablezca la contraseña haciendo clic en \"Olvidé mi clave\" para desbloquearlo";
+                    ErrorMessage.Visible = true;
+                }
                 else
                 {
                     // El login falló
@@ -51,6 +56,11 @@ namespace BuyMotors.Account
                     ErrorMessage.Visible = true;
                 }
             }
+        }
+
+        protected void ForgotPasswordLinkButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void SalirDeLaPagina()

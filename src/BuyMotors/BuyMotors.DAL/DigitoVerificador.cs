@@ -47,6 +47,39 @@ namespace BuyMotors.DAL
             RecalcularDVV("DVH", "FacturaCabecera", "Id");
         }
 
+        public static bool VerificarUsuario(int idUsuario)
+        {
+            string query = "SELECT Id, Nombre, Apellido, Telefono, Email, Password, IntentosLogin, TokenRecuperacion, DVH " +
+                "FROM Usuario WHERE Id = @id";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@id", idUsuario)
+            };
+
+            DataTable table = SqlHelper.Obtener(query, parameters);
+            if (table != null && table.Rows.Count > 0)
+            {
+                DataRow row = table.Rows[0];
+                Usuario usuario = new Usuario
+                {
+                    Id = int.Parse(row["Id"].ToString()),
+                    Nombre = row["Nombre"].ToString(),
+                    Apellido = row["Apellido"].ToString(),
+                    Telefono = row["Telefono"].ToString(),
+                    Email = row["Email"].ToString(),
+                    Contrasenia = row["Password"].ToString(),
+                    IntentosLogin = int.Parse(row["IntentosLogin"].ToString()),
+                    TokenRecuperacion = row["TokenRecuperacion"].ToString()
+                };
+
+                string dvhBD = row["DVH"].ToString();
+                string dvhCalculado = ObtenerDVH(usuario);
+                return dvhBD == dvhCalculado;
+            }
+
+            return false;
+        }
+
         public static bool VerificarIntegridad(List<string> mensajes)
         {
             string query;
@@ -55,7 +88,7 @@ namespace BuyMotors.DAL
             bool sinErrores = true;
 
             #region Usuario
-            query = "SELECT Id, Nombre, Apellido, Telefono, Email, Password, DVH FROM Usuario ORDER BY Id";
+            query = "SELECT Id, Nombre, Apellido, Telefono, Email, Password, IntentosLogin, TokenRecuperacion, DVH FROM Usuario ORDER BY Id";
             tabla = SqlHelper.Obtener(query, null);
             if (tabla != null)
             {
@@ -68,7 +101,9 @@ namespace BuyMotors.DAL
                         Apellido = row["Apellido"].ToString(),
                         Telefono = row["Telefono"].ToString(),
                         Email = row["Email"].ToString(),
-                        Contrasenia = row["Password"].ToString()
+                        Contrasenia = row["Password"].ToString(),
+                        IntentosLogin = int.Parse(row["IntentosLogin"].ToString()),
+                        TokenRecuperacion = row["TokenRecuperacion"].ToString()
                     };
 
                     string dvhBD = row["DVH"].ToString();
@@ -144,13 +179,15 @@ namespace BuyMotors.DAL
 
         private static string ObtenerDVH(Usuario usuario)
         {
-            string registro = string.Format("{0}{1}{2}{3}{4}{5}",
+            string registro = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}",
                 usuario.Id,
                 usuario.Nombre,
                 usuario.Apellido,
                 usuario.Telefono,
                 usuario.Email,
-                usuario.Contrasenia);
+                usuario.Contrasenia,
+                usuario.IntentosLogin,
+                usuario.TokenRecuperacion ?? "");
             return CalcularDV(registro);
         }
 

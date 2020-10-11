@@ -10,6 +10,8 @@ namespace BuyMotors.BE
         public string Telefono { get; set; }
         public string Email { get; set; }
         public string Contrasenia { get; set; }
+        public int IntentosLogin { get; set; }
+        public string TokenRecuperacion { get; set; }
         public List<Permiso> Permisos { get; set; } = new List<Permiso>();
     }
 }

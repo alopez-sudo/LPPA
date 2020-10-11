@@ -7,14 +7,40 @@ namespace BuyMotors.BL
 {
     public class UsuarioManager
     {
-        public static Usuario Login(string email, string contrasenia)
+        public static Usuario Login(string email, string contrasenia, out bool estaBloqueado)
         {
+            estaBloqueado = false;
             try
             {
-                Usuario usuario = UsuarioMapper.Obtener(email, Encriptador.Encriptar(contrasenia));
-                if (usuario != null && TienePermiso(usuario, Permisos.LOGIN))
+                Usuario usuario = UsuarioMapper.Obtener(email);
+                if (usuario != null)
                 {
-                    return usuario;
+                    if (usuario.IntentosLogin < 3)
+                    {
+                        string contraseniaEncriptada = Encriptador.Encriptar(contrasenia);
+                        if (contraseniaEncriptada == usuario.Contrasenia)
+                        {
+                            if (usuario.IntentosLogin > 0)
+                            {
+                                usuario.IntentosLogin = 0;
+                                UsuarioMapper.Guardar(usuario);
+                            }
+
+                            if (TienePermiso(usuario, Permisos.LOGIN))
+                            {
+                                return usuario;
+                            }
+                        }
+                        else
+                        {
+                            usuario.IntentosLogin++;
+                            UsuarioMapper.Guardar(usuario);
+                        }
+                    }
+                    else
+                    {
+                        estaBloqueado = true;
+                    }
                 }
             }
             catch (Exception ex)

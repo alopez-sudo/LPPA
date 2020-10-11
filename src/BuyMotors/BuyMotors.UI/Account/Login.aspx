@@ -18,28 +18,26 @@
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Correo electrónico</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="El campo de correo electrónico es obligatorio." />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" CssClass="text-danger" 
+                                ErrorMessage="El campo de correo electrónico es obligatorio." ValidationGroup="Login" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" CssClass="text-danger" 
+                                ErrorMessage="El campo de correo electrónico es obligatorio." ValidationGroup="ForgotPassword" />
                         </div>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Contraseña</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" 
+                                ErrorMessage="El campo de contraseña es obligatorio." ValidationGroup="Login" />
                         </div>
                     </div>
-                    <%--<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">¿Recordar cuenta?</asp:Label>
-                            </div>
-                        </div>
-                    </div>--%>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" />
+                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" ValidationGroup="Login" />
+                            <span style="margin-left:30px;">
+                                <asp:LinkButton ID="ForgotPasswordLinkButton" runat="server" OnClick="ForgotPasswordLinkButton_Click" ValidationGroup="ForgotPassword">Olvidé mi contraseña</asp:LinkButton>
+                            </span>
                         </div>
                     </div>
                 </div>
