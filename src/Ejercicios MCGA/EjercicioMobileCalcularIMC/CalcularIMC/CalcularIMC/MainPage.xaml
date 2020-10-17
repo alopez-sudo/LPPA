@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalcularIMC.MainPage">
+
+	<StackLayout>
+		<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+			<Label Text="SaludableYa!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+		</Frame>
+
+		<Label Text="Calcular IMC" FontSize="Title" Padding="30,10,30,10"/>
+
+		<Label Text="Peso:" FontSize="16" Padding="30,0,30,0"/>
+
+		<Entry x:Name="TxtPeso"></Entry>
+
+		<Label Text="Altura:" FontSize="16" Padding="30,0,30,0"/>
+
+		<Entry x:Name="TxtAltura"></Entry>
+
+		<Label Text="Estructura Corporal:" FontSize="16" Padding="30,0,30,0"/>
+
+		<RadioButton x:Name="radGrande" Text="Grande"></RadioButton>
+		<RadioButton x:Name="radMediano" Text="Mediano"></RadioButton>
+		<RadioButton x:Name="radChico" Text="Chico"></RadioButton>
+
+		<Label Text="Sexo:" FontSize="16" Padding="30,0,30,0"/>
+
+		<Picker x:Name="LstSexo"
+				Title="Seleccionar sexo"
+				ItemsSource="{Binding Sexos}"
+				ItemDisplayBinding="{Binding Nombre}"
+				SelectedItem="{Binding Sexo}"
+				SelectedIndexChanged="LstSexo_SelectedIndexChanged">
+		</Picker>
+
+		<Button Text="Calcular IMC" Clicked="Button_Clicked"></Button>
+
+		<Entry x:Name="TxtIMC" IsEnabled="False"></Entry>
+
+	</StackLayout>
+
+</ContentPage>
