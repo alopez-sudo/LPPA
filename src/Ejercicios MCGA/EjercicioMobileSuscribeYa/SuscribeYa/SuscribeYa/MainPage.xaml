@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuscribeYa.MainPage">
+
+	<ListView x:Name="LstCategorias">
+		<ListView.Header>
+			<StackLayout VerticalOptions="StartAndExpand">
+				<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+					<Label Text="SuscribeYa!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+				</Frame>
+				<Label Text="Seleccione las categorías" FontSize="Title" Padding="30,10,30,10"/>
+			</StackLayout>
+		</ListView.Header>
+		<ListView.Footer>
+			<StackLayout VerticalOptions="StartAndExpand">
+				<Button Text="Suscribirse" Clicked="Button_Clicked"></Button>
+			</StackLayout>
+		</ListView.Footer>
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<StackLayout Orientation="Horizontal" Margin="10">
+						<Label Text="{Binding Nombre}" />
+						<CheckBox  IsChecked="{Binding IsCheck}" HorizontalOptions="EndAndExpand"/>
+					</StackLayout>
+				</ViewCell>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</ContentPage>
