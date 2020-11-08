@@ -1,5 +1,10 @@
-﻿using BuyMotors.BE.Filtros;
+﻿using BuyMotors.BE;
+using BuyMotors.BE.Filtros;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.XPath;
 
 namespace BuyMotors.UI
 {
@@ -9,17 +14,69 @@ namespace BuyMotors.UI
 		{
             if (!IsPostBack)
             {
-                CargarGvVehiculo(null);
+                CargarGvVehiculo(new FiltroVehiculo());
             }
         }
 
-		private void CargarGvVehiculo(FiltroVehiculo filtro)
-		{
-			//gvVehiculos.DataSource = VehiculoManager.ObtenerVehiculos(filtro);
-			VehiculosWS vehiculosWS = new VehiculosWS();
-			gvVehiculos.DataSource = vehiculosWS.ObtenerVehiculos(filtro);
-			gvVehiculos.DataBind();
-		}
+        private void CargarGvVehiculo(FiltroVehiculo filtro)
+        {
+            VehiculosWS vehiculosWS = new VehiculosWS();
+            // Obtengo el XML de los vehículos dentro de un string.
+            string xmlVehiculos = vehiculosWS.ObtenerVehiculosXml();
+            List<Vehiculo> vehiculos = new List<Vehiculo>();
+
+            // Utilizo el xml dentro del string para crear un documento XPath
+            StringReader sr = new StringReader(xmlVehiculos);
+            XPathDocument xPathDocument = new XPathDocument(sr);
+
+            // Defino el query de xPath de acuerdo a los filtros recibidos
+            List<string> queries = new List<string>();
+            if (!string.IsNullOrEmpty(filtro.Patente))
+            {
+                queries.Add("Patente='" + filtro.Patente + "'");
+            }
+            if (filtro.PrecioDesde.HasValue)
+            {
+                queries.Add("Precio>=" + filtro.PrecioDesde);
+            }
+            if (filtro.PrecioHasta.HasValue)
+            {
+                queries.Add("Precio<=" + filtro.PrecioHasta);
+            }
+            string query = queries.Any() ? "[" + string.Join(" and ", queries) + "]" : "";
+
+            XPathNavigator xNavegador = xPathDocument.CreateNavigator();
+            XPathNodeIterator iterador;
+            iterador = xNavegador.Select("Vehiculos/Vehiculo" + query);
+
+            // Reconstruyo los objetos Vehiculo iterando con el iterador de XPath y obteniendo los valores de los nodos.
+            while (iterador.MoveNext())
+            {
+                Vehiculo vehiculo = new Vehiculo
+                {
+                    Id = int.Parse(iterador.Current.SelectSingleNode("Id").Value),
+                    Patente = iterador.Current.SelectSingleNode("Patente").Value,
+                    Tipo = new TipoVehiculo { Nombre = iterador.Current.SelectSingleNode("Tipo").Value },
+                    Categoria = new CategoriaVehiculo { Nombre = iterador.Current.SelectSingleNode("Categoria").Value },
+                    Color = new Color { Nombre = iterador.Current.SelectSingleNode("Color").Value },
+                    Modelo = new Modelo
+                    {
+                        Nombre = iterador.Current.SelectSingleNode("Modelo").Value,
+                        Marca = new Marca { Nombre = iterador.Current.SelectSingleNode("Marca").Value }
+                    },
+                    Precio = int.Parse(iterador.Current.SelectSingleNode("Precio").Value),
+                    AnioFabricacion = int.Parse(iterador.Current.SelectSingleNode("AnioFabricacion").Value),
+                    ImagenNombre = iterador.Current.SelectSingleNode("ImagenNombre").Value
+                };
+
+                vehiculos.Add(vehiculo);
+            }
+
+            sr.Close();
+
+            gvVehiculos.DataSource = vehiculos;
+            gvVehiculos.DataBind();
+        }
 
 		protected void BtnBuscar_Click(object sender, EventArgs e)
 		{
@@ -55,7 +112,7 @@ namespace BuyMotors.UI
 			TxtPatente.Text = string.Empty;
 			TxtPrecioDesde.Text = string.Empty;
 			TxtPrecioHasta.Text = string.Empty;
-			CargarGvVehiculo(null);
+			CargarGvVehiculo(new FiltroVehiculo());
 		}
 	}
 }

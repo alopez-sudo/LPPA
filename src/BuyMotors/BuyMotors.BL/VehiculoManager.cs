@@ -7,9 +7,9 @@ namespace BuyMotors.BL
 {
 	public class VehiculoManager
 	{
-		public static IEnumerable<Vehiculo> ObtenerVehiculos(FiltroVehiculo filtro)
+		public static List<Vehiculo> ObtenerVehiculos()
 		{
-			return VehiculoMapper.ObtenerVehiculos(filtro);
+			return VehiculoMapper.ObtenerVehiculos();
 		}
 		public static Vehiculo ObtenerVehiculo(int Id)
 		{
