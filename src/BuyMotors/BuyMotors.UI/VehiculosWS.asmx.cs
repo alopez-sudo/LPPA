@@ -1,5 +1,4 @@
 ﻿using BuyMotors.BE;
-using BuyMotors.BE.Filtros;
 using BuyMotors.BL;
 using System.Collections.Generic;
 using System.ComponentModel;
